@@ -1,0 +1,485 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Local font definitions with fallback to Google Fonts */
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/Inter-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/Inter-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/Inter-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/Inter-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('/assets/fonts/Cairo-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('/assets/fonts/Cairo-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('/assets/fonts/Cairo-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Fallback to Google Fonts if local fonts fail to load */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&family=Cairo:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+  }
+
+  html {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  /* Arabic font for Arabic text */
+  [lang="ar"], .arabic-font {
+    font-family: 'Cairo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  /* English font for English text */
+  [lang="en"], .english-font {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  /* RTL Support */
+  [dir="rtl"] {
+    text-align: right;
+  }
+
+  [dir="ltr"] {
+    text-align: left;
+  }
+
+  /* RTL-specific utilities */
+  .rtl-text-right {
+    text-align: right;
+  }
+
+  .rtl-text-left {
+    text-align: left;
+  }
+
+  .ltr-text-left {
+    text-align: left;
+  }
+
+  .ltr-text-right {
+    text-align: right;
+  }
+
+  /* RTL flex utilities */
+  .rtl-flex-row-reverse {
+    flex-direction: row-reverse;
+  }
+
+  .ltr-flex-row {
+    flex-direction: row;
+  }
+
+  /* RTL margin utilities */
+  .rtl-mr-auto {
+    margin-right: auto;
+  }
+
+  .rtl-ml-auto {
+    margin-left: auto;
+  }
+
+  .ltr-ml-auto {
+    margin-left: auto;
+  }
+
+  .ltr-mr-auto {
+    margin-right: auto;
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply bg-white/90 backdrop-blur-md border border-white/30 shadow-2xl;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-700 via-purple-700 to-blue-800 bg-clip-text text-transparent;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-200 hover:scale-105 hover:shadow-2xl border-gray-100 hover:border-blue-200;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-blue-700 to-purple-700 text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-200 hover:from-blue-800 hover:to-purple-800 hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 shadow-lg;
+  }
+  
+  .btn-secondary {
+    @apply bg-white/95 backdrop-blur-md text-gray-800 px-8 py-4 rounded-2xl font-semibold border-2 border-gray-200 transition-all duration-200 hover:bg-white hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 shadow-md hover:border-blue-300;
+  }
+  
+  .skill-card-animation {
+    @apply animate-fade-in-up hover:animate-pulse;
+  }
+  
+  .section-title {
+    @apply text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 animate-fade-in-down;
+  }
+  
+  .section-subtitle {
+    @apply text-lg sm:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in-up;
+  }
+  
+  .professional-card {
+    @apply bg-white/95 backdrop-blur-md border border-gray-200/50 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:border-blue-200;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-blue-700 to-purple-700 bg-clip-text text-transparent;
+  }
+
+  /* Hero Section Animations */
+  .hero-welcome {
+    @apply animate-bounce-in;
+  }
+
+  .hero-title {
+    @apply animate-slide-in-up;
+  }
+
+  .hero-description {
+    @apply animate-fade-in-up;
+  }
+
+  .hero-buttons {
+    @apply animate-fade-in-up;
+  }
+
+  /* Floating Chat Animations */
+  .chat-toggle {
+    @apply transition-all duration-150 hover:scale-110 hover:rotate-12;
+  }
+
+  .chat-window {
+    @apply animate-slide-in-right;
+  }
+
+  /* Language Switcher Animations */
+  .lang-button {
+    @apply transition-all duration-150 hover:scale-110 hover:rotate-3;
+  }
+
+  /* Skill Card Animations */
+  .skill-card {
+    @apply transition-all duration-200 hover:scale-105 hover:rotate-1 hover:shadow-2xl;
+  }
+
+  /* Project Card Animations */
+  .project-card {
+    @apply transition-all duration-200 hover:scale-105 hover:shadow-2xl hover:border-blue-300;
+  }
+
+  /* CV Download Animations */
+  .cv-section {
+    @apply animate-fade-in-up;
+  }
+
+  /* Contact Section Animations */
+  .contact-section {
+    @apply animate-fade-in-up;
+  }
+  
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in-up {
+    animation: fade-in-up 0.4s ease-out;
+  }
+
+  @keyframes fade-in-down {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in-down {
+    animation: fade-in-down 0.4s ease-out;
+  }
+  
+  @keyframes bounce-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.3) translateY(30px);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05) translateY(-5px);
+    }
+    70% {
+      transform: scale(0.95) translateY(0);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+  
+  .animate-bounce-in {
+    animation: bounce-in 0.6s ease-out;
+  }
+  
+  @keyframes slide-in-right {
+    0% {
+      opacity: 0;
+      transform: translateX(50px) scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+  }
+  
+  .animate-slide-in-right {
+    animation: slide-in-right 0.4s ease-out;
+  }
+
+  @keyframes slide-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  .animate-slide-in-up {
+    animation: slide-in-up 0.5s ease-out;
+  }
+
+  /* Staggered animations for lists */
+  .stagger-animation > * {
+    animation: fade-in-up 0.3s ease-out;
+  }
+
+  .stagger-animation > *:nth-child(1) { animation-delay: 0.05s; }
+  .stagger-animation > *:nth-child(2) { animation-delay: 0.1s; }
+  .stagger-animation > *:nth-child(3) { animation-delay: 0.15s; }
+  .stagger-animation > *:nth-child(4) { animation-delay: 0.2s; }
+  .stagger-animation > *:nth-child(5) { animation-delay: 0.25s; }
+  .stagger-animation > *:nth-child(6) { animation-delay: 0.3s; }
+  .stagger-animation > *:nth-child(7) { animation-delay: 0.35s; }
+  .stagger-animation > *:nth-child(8) { animation-delay: 0.4s; }
+  .stagger-animation > *:nth-child(9) { animation-delay: 0.45s; }
+  .stagger-animation > *:nth-child(10) { animation-delay: 0.5s; }
+
+  /* Hover effects */
+  .hover-lift {
+    @apply transition-all duration-150 hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-150 hover:shadow-lg hover:shadow-blue-500/25;
+  }
+
+  /* Loading animations */
+  @keyframes shimmer {
+    0% {
+      background-position: -200px 0;
+    }
+    100% {
+      background-position: calc(200px + 100%) 0;
+    }
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200px 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* Horizontal slide animations */
+  @keyframes slide-in-left {
+    0% {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-in-right {
+    0% {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slide-in-left {
+    animation: slide-in-left 0.6s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.6s ease-out;
+  }
+
+  /* Skills row animations */
+  .skills-row-1 > * {
+    animation: slide-in-left 0.6s ease-out;
+  }
+
+  .skills-row-2 > * {
+    animation: slide-in-right 0.6s ease-out;
+  }
+
+  .skills-row-1 > *:nth-child(1) { animation-delay: 0.1s; }
+  .skills-row-1 > *:nth-child(2) { animation-delay: 0.2s; }
+  .skills-row-1 > *:nth-child(3) { animation-delay: 0.3s; }
+  .skills-row-1 > *:nth-child(4) { animation-delay: 0.4s; }
+  .skills-row-1 > *:nth-child(5) { animation-delay: 0.5s; }
+  .skills-row-1 > *:nth-child(6) { animation-delay: 0.6s; }
+  .skills-row-1 > *:nth-child(7) { animation-delay: 0.7s; }
+  .skills-row-1 > *:nth-child(8) { animation-delay: 0.8s; }
+
+  .skills-row-2 > *:nth-child(1) { animation-delay: 0.2s; }
+  .skills-row-2 > *:nth-child(2) { animation-delay: 0.3s; }
+  .skills-row-2 > *:nth-child(3) { animation-delay: 0.4s; }
+  .skills-row-2 > *:nth-child(4) { animation-delay: 0.5s; }
+  .skills-row-2 > *:nth-child(5) { animation-delay: 0.6s; }
+  .skills-row-2 > *:nth-child(6) { animation-delay: 0.7s; }
+  .skills-row-2 > *:nth-child(7) { animation-delay: 0.8s; }
+  .skills-row-2 > *:nth-child(8) { animation-delay: 0.9s; }
+
+  /* Horizontal scroll styles */
+  .skills-scroll-container {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+  }
+
+  .skills-scroll-container::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .skills-scroll-container::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .skills-scroll-container::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.5);
+    border-radius: 3px;
+  }
+
+  .skills-scroll-container::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(156, 163, 175, 0.8);
+  }
+
+  /* Smooth scroll behavior */
+  .skills-scroll-container {
+    scroll-behavior: smooth;
+  }
+} 
