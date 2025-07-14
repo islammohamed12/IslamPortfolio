@@ -1,71 +1,53 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-
-const translations = {
-  ar: {
-    welcome: 'مرحباً بك في موقعي الشخصي',
-    name: 'اسلام السيد',
-    heroDesc: 'مطور حلول شاملة (Full Stack) بخبرة تتجاوز 13 عامًا في تصميم وتطوير الأنظمة المؤسسية عالية الأداء. متخصص في أحدث تقنيات الـ Full Stack مثل React، Node.js، .NET Core، وPython، بالإضافة إلى خبرة متقدمة في تطوير تطبيقات الجوال متعددة المنصات باستخدام React Native وFlutter. أمتلك خبرة قوية في بناء الأنظمة الحكومية والبنكية، تكامل الذكاء الاصطناعي، وقيادة فرق تطوير لتنفيذ مشاريع تقنية معقدة.',
-    contactMe: 'تواصل معي',
-    viewProjects: 'عرض المشاريع',
-    skillsTitle: 'مهاراتي التقنية',
-    skillsSubtitle: 'أتقن مجموعة متنوعة من التقنيات الحديثة والمتطورة',
-    projectsTitle: 'مشاريعي المميزة',
-    projectsSubtitle: 'مجموعة من أفضل المشاريع التي عملت عليها في مختلف القطاعات',
-    cvTitle: 'السيرة الذاتية',
-    cvSubtitle: 'تحميل نسخة من سيرتي الذاتية المحدثة',
-    contactTitle: 'دعنا نتعاون',
-    contactSubtitle: 'هل لديك مشروع تريد مناقشته؟ لا تتردد في التواصل معي',
-    sendMessage: 'إرسال رسالة',
-    linkedin: 'التواصل عبر LinkedIn',
-    chatGreeting: 'مرحباً! 👋 أنا مساعد اسلام السيد الشخصي. يمكنني مساعدتك في معرفة المزيد عن: مهاراتي التقنية وخبراتي، المشاريع التي عملت عليها، خبراتي في تطوير التطبيقات، معلومات عن سيرتي الذاتية. اسألني أي شيء تريد معرفته عن اسلام السيد! 😊',
-    chatHeader: 'مساعد اسلام السيد',
-    chatPlaceholder: 'اكتب رسالتك...',
-    testimonialsTitle: 'آراء العملاء',
-    testimonialsSubtitle: 'ماذا يقول عملائي عن تجربتهم في العمل معي'
-  },
-  en: {
-    welcome: 'Welcome to my personal website',
-    name: 'Islam Elsayed',
-    heroDesc: 'Full Stack Solutions Architect with 13+ years of experience designing and developing high-performance enterprise systems. Specialized in modern full stack technologies such as React, Node.js, .NET Core, and Python, with advanced expertise in cross-platform mobile development using React Native and Flutter. Strong background in building government and banking systems, AI integration, and leading teams to deliver complex technical projects.',
-    contactMe: 'Contact Me',
-    viewProjects: 'View Projects',
-    skillsTitle: 'My Technical Skills',
-    skillsSubtitle: 'I master a wide range of modern and advanced technologies',
-    projectsTitle: 'Featured Projects',
-    projectsSubtitle: 'A selection of the best projects I have worked on across various sectors',
-    cvTitle: 'Curriculum Vitae',
-    cvSubtitle: 'Download my latest CV',
-    contactTitle: 'Let’s Collaborate',
-    contactSubtitle: 'Do you have a project to discuss? Feel free to contact me',
-    sendMessage: 'Send Message',
-    linkedin: 'Connect via LinkedIn',
-    chatGreeting: 'Hello! 👋 I am Islam Elsayed\'s personal assistant. I can help you learn more about: my technical skills and experience, projects I have worked on, my mobile development expertise, and my CV. Ask me anything you want to know about Islam Elsayed! 😊',
-    chatHeader: 'Islam Elsayed Assistant',
-    chatPlaceholder: 'Type your message...',
-    testimonialsTitle: 'Client Testimonials',
-    testimonialsSubtitle: 'What my clients say about working with me'
-  }
-};
+import translations from '../lib/translations.json';
 
 const LanguageContext = createContext();
 
 export function LanguageProvider({ children }) {
-  const [lang, setLang] = useState('ar');
+  const [lang, setLang] = useState('en');
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const userLang = navigator.language || navigator.userLanguage;
-      if (userLang.startsWith('ar')) setLang('ar');
-      else setLang('en');
+      // Try to get language from localStorage first
+      const savedLang = localStorage.getItem('selectedLanguage');
+      
+      if (savedLang && (savedLang === 'en' || savedLang === 'ar')) {
+        setLang(savedLang);
+      } else {
+        // Fallback to browser language detection
+        const userLang = navigator.language || navigator.userLanguage;
+        if (userLang.startsWith('ar')) {
+          setLang('ar');
+          localStorage.setItem('selectedLanguage', 'ar');
+        } else {
+          setLang('en');
+          localStorage.setItem('selectedLanguage', 'en');
+        }
+      }
+      setIsLoaded(true);
     }
   }, []);
 
+  const toggleLanguage = () => {
+    const newLang = lang === 'en' ? 'ar' : 'en';
+    setLang(newLang);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('selectedLanguage', newLang);
+    }
+  };
+
   const t = translations[lang];
 
+  // Don't render children until language is loaded
+  if (!isLoaded) {
+    return null;
+  }
+
   return (
-    <LanguageContext.Provider value={{ lang, setLang, t }}>
+    <LanguageContext.Provider value={{ lang, setLang, t, toggleLanguage, isLoaded }}>
       {children}
     </LanguageContext.Provider>
   );

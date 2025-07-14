@@ -4,12 +4,17 @@ import { useEffect } from 'react';
 import { loadFonts } from '../lib/fonts';
 
 export default function DynamicLayout({ children }) {
-  const { lang } = useLanguage();
+  const { lang, isLoaded } = useLanguage();
   
   useEffect(() => {
     // Load fonts when component mounts
     loadFonts();
   }, []);
+  
+  // Don't render until language is loaded
+  if (!isLoaded) {
+    return null;
+  }
   
   return (
     <div 

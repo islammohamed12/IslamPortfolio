@@ -1,8 +1,11 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { useLanguage } from '../app/LanguageProvider';
 
 export default function CVDownload() {
+  const { lang } = useLanguage();
+
   const downloadCV = (format) => {
     const link = document.createElement('a');
     link.href = `/assets/cv-islam-mohamed.${format}`;
@@ -18,21 +21,27 @@ export default function CVDownload() {
         <CardHeader>
           <CardTitle className="flex items-center gap-3">
             <span className="text-2xl">📄</span>
-            السيرة الذاتية - PDF
+            {lang === 'ar' ? 'السيرة الذاتية - PDF' : 'CV - PDF'}
           </CardTitle>
           <CardDescription>
-            نسخة PDF منسقة بشكل احترافي من سيرتي الذاتية
+            {lang === 'ar' 
+              ? 'نسخة PDF منسقة بشكل احترافي من سيرتي الذاتية'
+              : 'Professionally formatted PDF version of my CV'
+            }
           </CardDescription>
         </CardHeader>
         <CardContent>
           <p className="text-gray-600 mb-4">
-            تحتوي على جميع مهاراتي وخبراتي ومشاريعي بتنسيق PDF احترافي
+            {lang === 'ar'
+              ? 'تحتوي على جميع مهاراتي وخبراتي ومشاريعي بتنسيق PDF احترافي'
+              : 'Contains all my skills, experience, and projects in professional PDF format'
+            }
           </p>
           <Button 
             onClick={() => downloadCV('pdf')}
             className="w-full btn-primary"
           >
-            تحميل PDF
+            {lang === 'ar' ? 'تحميل PDF' : 'Download PDF'}
           </Button>
         </CardContent>
       </Card>
@@ -41,21 +50,27 @@ export default function CVDownload() {
         <CardHeader>
           <CardTitle className="flex items-center gap-3">
             <span className="text-2xl">📝</span>
-            السيرة الذاتية - Word
+            {lang === 'ar' ? 'السيرة الذاتية - Word' : 'CV - Word'}
           </CardTitle>
           <CardDescription>
-            نسخة Word قابلة للتعديل من سيرتي الذاتية
+            {lang === 'ar'
+              ? 'نسخة Word قابلة للتعديل من سيرتي الذاتية'
+              : 'Editable Word version of my CV'
+            }
           </CardDescription>
         </CardHeader>
         <CardContent>
           <p className="text-gray-600 mb-4">
-            نسخة DOCX يمكن تعديلها وإضافة معلومات إضافية حسب الحاجة
+            {lang === 'ar'
+              ? 'نسخة DOCX يمكن تعديلها وإضافة معلومات إضافية حسب الحاجة'
+              : 'DOCX version that can be edited and customized as needed'
+            }
           </p>
           <Button 
             onClick={() => downloadCV('docx')}
             className="w-full btn-secondary"
           >
-            تحميل Word
+            {lang === 'ar' ? 'تحميل Word' : 'Download Word'}
           </Button>
         </CardContent>
       </Card>

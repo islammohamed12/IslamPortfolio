@@ -1,6 +1,7 @@
 import './globals.css';
 import { LanguageProvider } from './LanguageProvider';
-import LanguageSwitcher from './LanguageSwitcher';
+import Navigation from '../components/Navigation';
+import DynamicLayout from './DynamicLayout';
 
 export const metadata = {
   title: {
@@ -85,7 +86,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ar" dir="rtl">
+    <html lang="en" dir="ltr">
       <head>
         {/* Preload critical fonts */}
         <link 
@@ -179,8 +180,10 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <LanguageProvider>
-          <LanguageSwitcher />
-          {children}
+          <DynamicLayout>
+            <Navigation />
+            {children}
+          </DynamicLayout>
         </LanguageProvider>
       </body>
     </html>

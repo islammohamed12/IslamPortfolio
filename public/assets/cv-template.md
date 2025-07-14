@@ -141,7 +141,7 @@ Experienced Technical Lead with 13+ years of proven success in designing and del
 - Designed and implemented cross-platform applications for e-banking, e-insurance, and e-trading businesses
 - Developed prototypes that secured new contracts for the company
 - Participated in the full software development lifecycle, from analysis to deployment
-- Provided on-site support and troubleshooting for high-profile clients like Al Rajhi Bank
+- Provided on-site support and troubleshooting for high-profile organizations like Al Rajhi Bank
 - Trained new employees on code standards and software best practices
 
 **Key Technologies**: VB.NET, C# (MVC), Java (Android SDK), JavaScript, SQL, SQLite, Cordova, PhoneGap, HTML5, CSS3, jQuery, JSP, ASP.NET, Material Design, SOAP, RESTful APIs, AJAX, XML, JSON

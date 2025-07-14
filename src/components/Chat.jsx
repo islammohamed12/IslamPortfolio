@@ -2,8 +2,10 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useLanguage } from '../app/LanguageProvider';
 
 export default function Chat() {
+  const { t, lang } = useLanguage();
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +35,7 @@ export default function Chat() {
       console.error('Error sending message:', error);
       setMessages((prev) => [...prev, { 
         role: 'assistant', 
-        content: 'عذراً، حدث خطأ في الاتصال. حاول مرة أخرى.' 
+        content: lang === 'ar' ? 'عذراً، حدث خطأ في الاتصال. حاول مرة أخرى.' : 'Sorry, there was a connection error. Please try again.'
       }]);
     } finally {
       setIsLoading(false);
@@ -54,8 +56,10 @@ export default function Chat() {
           AI
         </div>
         <div>
-          <h3 className="font-bold text-gray-800">مساعد اسلام السيد</h3>
-          <p className="text-sm text-gray-500">اسأل عن مهاراتي ومشاريعي وخبراتي</p>
+          <h3 className="font-bold text-gray-800">{t.chatHeader}</h3>
+          <p className="text-sm text-gray-500">
+            {lang === 'ar' ? 'اسأل عن مهاراتي ومشاريعي وخبراتي' : 'Ask about my skills, projects, and experience'}
+          </p>
         </div>
       </div>
       
@@ -65,7 +69,9 @@ export default function Chat() {
             <div className="w-16 h-16 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <span className="text-2xl">💬</span>
             </div>
-            <p className="text-gray-500">اسأل عن مهاراتي أو مشاريعي أو خبراتي...</p>
+            <p className="text-gray-500">
+              {lang === 'ar' ? 'اسأل عن مهاراتي أو مشاريعي أو خبراتي...' : 'Ask about my skills, projects, or experience...'}
+            </p>
           </div>
         )}
         
@@ -90,7 +96,9 @@ export default function Chat() {
                   <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
                   <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
                 </div>
-                <span className="text-sm text-gray-500">جاري الكتابة...</span>
+                <span className="text-sm text-gray-500">
+                  {lang === 'ar' ? 'جاري الكتابة...' : 'Typing...'}
+                </span>
               </div>
             </div>
           </div>
@@ -103,7 +111,7 @@ export default function Chat() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyPress={handleKeyPress}
-          placeholder="اسأل عن مهاراتي أو مشاريعي..."
+          placeholder={t.chatPlaceholder}
           disabled={isLoading}
         />
         <Button 
@@ -114,10 +122,10 @@ export default function Chat() {
           {isLoading ? (
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-              <span>جاري...</span>
+              <span>{lang === 'ar' ? 'جاري...' : 'Sending...'}</span>
             </div>
           ) : (
-            <span>إرسال</span>
+            <span>{lang === 'ar' ? 'إرسال' : 'Send'}</span>
           )}
         </Button>
       </div>

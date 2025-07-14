@@ -1,479 +1,161 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import FloatingChat from '../components/FloatingChat';
-import ProjectCard from '../components/ProjectCard';
-import SkillCard from '../components/SkillCard';
-import CVViewer from '../components/CVViewer';
-import SkillsFilter from '../components/SkillsFilter';
-import SkillsStats from '../components/SkillsStats';
-import AutoScrollSkills from '../components/AutoScrollSkills';
-import ExperienceStats from '../components/ExperienceStats';
-import ApproachSection from '../components/ApproachSection';
-import TestimonialCard from '../components/TestimonialCard';
 import BackgroundCanvas from '../components/BackgroundCanvas';
-import Navigation from '../components/Navigation';
 import { useLanguage } from './LanguageProvider';
 import DynamicLayout from './DynamicLayout';
 import SEO from '../components/SEO';
-// Temporarily removed shadcn/ui imports
+import ProjectCard from '../components/ProjectCard';
+import ExperienceStats from '../components/ExperienceStats';
+import ApproachSection from '../components/ApproachSection';
 
 export default function Home() {
-  const [activeSkillFilter, setActiveSkillFilter] = useState('all');
-  const [activeTab, setActiveTab] = useState('home');
-  const { t, lang, setLang } = useLanguage();
-
-  // Reset filter when language changes
-  useEffect(() => {
-    setActiveSkillFilter('all');
-  }, [lang]);
-
-  // Update active tab based on scroll position
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['home', 'about', 'work', 'contact'];
-      const scrollPosition = window.scrollY + 150; // Offset for navigation
-
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = document.getElementById(sections[i]);
-        if (section && scrollPosition >= section.offsetTop) {
-          setActiveTab(sections[i]);
-          break;
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const allSkills = [
-    // Mobile Development
-    {
-      title: "React Native",
-      description: lang === 'ar' ? "تطوير تطبيقات الجوال (متقدم)" : "Advanced mobile app development",
-      icon: "📱",
-      color: "from-blue-500 to-blue-600",
-      category: lang === 'ar' ? "تطوير الجوال" : "Mobile Development"
-    },
-    {
-      title: "IBM MobileFirst",
-      description: lang === 'ar' ? "منصة تطوير تطبيقات الجوال" : "Mobile app development platform",
-      icon: "🏢",
-      color: "from-indigo-500 to-indigo-600",
-      category: lang === 'ar' ? "تطوير الجوال" : "Mobile Development"
-    },
-    {
-      title: "Cordova/PhoneGap",
-      description: lang === 'ar' ? "تطوير تطبيقات متعددة المنصات" : "Cross-platform app development",
-      icon: "📲",
-      color: "from-purple-500 to-purple-600",
-      category: lang === 'ar' ? "تطوير الجوال" : "Mobile Development"
-    },
-    {
-      title: "Ionic",
-      description: lang === 'ar' ? "تطوير تطبيقات هجينة" : "Hybrid app development",
-      icon: "⚡",
-      color: "from-blue-400 to-blue-500",
-      category: lang === 'ar' ? "تطوير الجوال" : "Mobile Development"
-    },
-    {
-      title: "Android SDK",
-      description: lang === 'ar' ? "تطوير تطبيقات Android" : "Android app development",
-      icon: "🤖",
-      color: "from-green-600 to-green-700",
-      category: lang === 'ar' ? "تطوير الجوال" : "Mobile Development"
-    },
-    
-    // Frontend Development
-    {
-      title: "React",
-      description: lang === 'ar' ? "تطوير واجهات المستخدم" : "User interface development",
-      icon: "⚛️",
-      color: "from-cyan-500 to-cyan-600",
-      category: lang === 'ar' ? "تطوير الواجهة الأمامية" : "Frontend Development"
-    },
-    {
-      title: "Angular",
-      description: lang === 'ar' ? "إطار عمل JavaScript" : "JavaScript framework",
-      icon: "🅰️",
-      color: "from-red-500 to-red-600",
-      category: lang === 'ar' ? "تطوير الواجهة الأمامية" : "Frontend Development"
-    },
-    {
-      title: "Vue.js",
-      description: lang === 'ar' ? "إطار عمل تقدمي" : "Progressive framework",
-      icon: "💚",
-      color: "from-green-500 to-green-600",
-      category: lang === 'ar' ? "تطوير الواجهة الأمامية" : "Frontend Development"
-    },
-    {
-      title: "TypeScript",
-      description: lang === 'ar' ? "JavaScript مع أنواع ثابتة" : "JavaScript with static types",
-      icon: "🔷",
-      color: "from-blue-600 to-blue-700",
-      category: lang === 'ar' ? "تطوير الواجهة الأمامية" : "Frontend Development"
-    },
-    {
-      title: "HTML5/CSS3",
-      description: lang === 'ar' ? "تطوير الويب الأساسي" : "Core web development",
-      icon: "🌐",
-      color: "from-orange-500 to-orange-600",
-      category: lang === 'ar' ? "تطوير الواجهة الأمامية" : "Frontend Development"
-    },
-    {
-      title: "Bootstrap",
-      description: lang === 'ar' ? "إطار عمل CSS" : "CSS framework",
-      icon: "🎨",
-      color: "from-purple-500 to-purple-600",
-      category: lang === 'ar' ? "تطوير الواجهة الأمامية" : "Frontend Development"
-    },
-    {
-      title: "jQuery",
-      description: lang === 'ar' ? "مكتبة JavaScript" : "JavaScript library",
-      icon: "📜",
-      color: "from-blue-400 to-blue-500",
-      category: lang === 'ar' ? "تطوير الواجهة الأمامية" : "Frontend Development"
-    },
-    {
-      title: "Backbone.js",
-      description: lang === 'ar' ? "إطار عمل JavaScript" : "JavaScript framework",
-      icon: "🦴",
-      color: "from-gray-600 to-gray-700",
-      category: lang === 'ar' ? "تطوير الواجهة الأمامية" : "Frontend Development"
-    },
-    
-    // Backend & Cloud
-    {
-      title: "Node.js",
-      description: lang === 'ar' ? "تطوير الخلفية والسحابة" : "Backend and cloud development",
-      icon: "⚡",
-      color: "from-green-500 to-green-600",
-      category: lang === 'ar' ? "الخلفية والسحابة" : "Backend & Cloud"
-    },
-    {
-      title: ".NET Core",
-      description: lang === 'ar' ? "إطار عمل Microsoft" : "Microsoft framework",
-      icon: "🔷",
-      color: "from-purple-600 to-purple-700",
-      category: lang === 'ar' ? "الخلفية والسحابة" : "Backend & Cloud"
-    },
-    {
-      title: "C#",
-      description: lang === 'ar' ? "لغة برمجة Microsoft" : "Microsoft programming language",
-      icon: "💜",
-      color: "from-purple-500 to-purple-600",
-      category: lang === 'ar' ? "الخلفية والسحابة" : "Backend & Cloud"
-    },
-    {
-      title: "Python",
-      description: lang === 'ar' ? "لغة برمجة متعددة الاستخدامات" : "Versatile programming language",
-      icon: "🐍",
-      color: "from-yellow-500 to-yellow-600",
-      category: lang === 'ar' ? "الخلفية والسحابة" : "Backend & Cloud"
-    },
-    {
-      title: "Java",
-      description: lang === 'ar' ? "لغة برمجة كائنية التوجه" : "Object-oriented programming language",
-      icon: "☕",
-      color: "from-orange-500 to-orange-600",
-      category: lang === 'ar' ? "الخلفية والسحابة" : "Backend & Cloud"
-    },
-    {
-      title: "Spring Boot",
-      description: lang === 'ar' ? "إطار عمل Java" : "Java framework",
-      icon: "🍃",
-      color: "from-green-500 to-green-600",
-      category: lang === 'ar' ? "الخلفية والسحابة" : "Backend & Cloud"
-    },
-    {
-      title: "MongoDB",
-      description: lang === 'ar' ? "قاعدة بيانات NoSQL" : "NoSQL database",
-      icon: "🍃",
-      color: "from-green-400 to-green-500",
-      category: lang === 'ar' ? "الخلفية والسحابة" : "Backend & Cloud"
-    },
-    {
-      title: "SQL Server",
-      description: lang === 'ar' ? "قاعدة بيانات Microsoft" : "Microsoft database",
-      icon: "🗄️",
-      color: "from-blue-600 to-blue-700",
-      category: lang === 'ar' ? "الخلفية والسحابة" : "Backend & Cloud"
-    },
-    {
-      title: "MySQL",
-      description: lang === 'ar' ? "قاعدة بيانات مفتوحة المصدر" : "Open-source database",
-      icon: "🐬",
-      color: "from-blue-500 to-blue-600",
-      category: lang === 'ar' ? "الخلفية والسحابة" : "Backend & Cloud"
-    },
-    {
-      title: "Oracle",
-      description: lang === 'ar' ? "قاعدة بيانات مؤسسية" : "Enterprise database",
-      icon: "🔴",
-      color: "from-red-600 to-red-700",
-      category: lang === 'ar' ? "الخلفية والسحابة" : "Backend & Cloud"
-    },
-    {
-      title: "Redis",
-      description: lang === 'ar' ? "قاعدة بيانات في الذاكرة" : "In-memory database",
-      icon: "🔴",
-      color: "from-red-500 to-red-600",
-      category: lang === 'ar' ? "الخلفية والسحابة" : "Backend & Cloud"
-    },
-    
-    // AI & Machine Learning
-    {
-      title: "OpenAI GPT",
-      description: lang === 'ar' ? "نماذج الذكاء الاصطناعي" : "AI language models",
-      icon: "🤖",
-      color: "from-green-500 to-green-600",
-      category: lang === 'ar' ? "الذكاء الاصطناعي" : "AI & Machine Learning"
-    },
-    {
-      title: "LangChain",
-      description: lang === 'ar' ? "إطار عمل AI" : "AI framework",
-      icon: "🔗",
-      color: "from-blue-500 to-blue-600",
-      category: lang === 'ar' ? "الذكاء الاصطناعي" : "AI & Machine Learning"
-    },
-    {
-      title: "AWS Bedrock",
-      description: lang === 'ar' ? "خدمات AI من Amazon" : "Amazon AI services",
-      icon: "☁️",
-      color: "from-orange-500 to-orange-600",
-      category: lang === 'ar' ? "الذكاء الاصطناعي" : "AI & Machine Learning"
-    },
-    {
-      title: "Amazon SageMaker",
-      description: lang === 'ar' ? "منصة تعلم الآلة" : "Machine learning platform",
-      icon: "🎓",
-      color: "from-purple-500 to-purple-600",
-      category: lang === 'ar' ? "الذكاء الاصطناعي" : "AI & Machine Learning"
-    },
-    {
-      title: "AWS Lambda",
-      description: lang === 'ar' ? "حوسبة بدون خادم" : "Serverless computing",
-      icon: "⚡",
-      color: "from-yellow-500 to-yellow-600",
-      category: lang === 'ar' ? "الذكاء الاصطناعي" : "AI & Machine Learning"
-    },
-    {
-      title: "IBM Watson",
-      description: lang === 'ar' ? "منصة الذكاء الاصطناعي" : "AI platform",
-      icon: "🧠",
-      color: "from-blue-600 to-blue-700",
-      category: lang === 'ar' ? "الذكاء الاصطناعي" : "AI & Machine Learning"
-    },
-    {
-      title: "Alteryx Designer",
-      description: lang === 'ar' ? "تحليل البيانات والأتمتة" : "Data analytics and automation",
-      icon: "📊",
-      color: "from-green-500 to-green-600",
-      category: lang === 'ar' ? "الذكاء الاصطناعي" : "AI & Machine Learning"
-    },
-    
-    // Cloud & DevOps
-    {
-      title: "Docker",
-      description: lang === 'ar' ? "الحاويات والنشر" : "Containerization and deployment",
-      icon: "🐳",
-      color: "from-blue-500 to-blue-600",
-      category: lang === 'ar' ? "السحابة وDevOps" : "Cloud & DevOps"
-    },
-    {
-      title: "Kubernetes",
-      description: lang === 'ar' ? "إدارة الحاويات" : "Container orchestration",
-      icon: "⚓",
-      color: "from-blue-600 to-blue-700",
-      category: lang === 'ar' ? "السحابة وDevOps" : "Cloud & DevOps"
-    },
-    {
-      title: "CI/CD Pipelines",
-      description: lang === 'ar' ? "التكامل والنشر المستمر" : "Continuous integration and deployment",
-      icon: "🔄",
-      color: "from-green-500 to-green-600",
-      category: lang === 'ar' ? "السحابة وDevOps" : "Cloud & DevOps"
-    },
-    {
-      title: "AWS AI Services",
-      description: lang === 'ar' ? "خدمات الذكاء الاصطناعي" : "AI services",
-      icon: "🤖",
-      color: "from-orange-500 to-orange-600",
-      category: lang === 'ar' ? "السحابة وDevOps" : "Cloud & DevOps"
-    },
-    
-    // Enterprise & Integration
-    {
-      title: "Oracle E-Business Suite",
-      description: lang === 'ar' ? "نظام تخطيط موارد المؤسسات" : "Enterprise resource planning",
-      icon: "🏢",
-      color: "from-red-600 to-red-700",
-      category: lang === 'ar' ? "المؤسسات والتكامل" : "Enterprise & Integration"
-    },
-    {
-      title: "RESTful APIs",
-      description: lang === 'ar' ? "واجهات برمجة التطبيقات" : "Application programming interfaces",
-      icon: "🌐",
-      color: "from-blue-500 to-blue-600",
-      category: lang === 'ar' ? "المؤسسات والتكامل" : "Enterprise & Integration"
-    },
-    {
-      title: "SOAP",
-      description: lang === 'ar' ? "بروتوكول تبادل البيانات" : "Data exchange protocol",
-      icon: "📡",
-      color: "from-gray-600 to-gray-700",
-      category: lang === 'ar' ? "المؤسسات والتكامل" : "Enterprise & Integration"
-    },
-    {
-      title: "AJAX",
-      description: lang === 'ar' ? "التحديثات غير المتزامنة" : "Asynchronous updates",
-      icon: "⚡",
-      color: "from-blue-400 to-blue-500",
-      category: lang === 'ar' ? "المؤسسات والتكامل" : "Enterprise & Integration"
-    },
-    {
-      title: "XML/JSON",
-      description: lang === 'ar' ? "تنسيقات تبادل البيانات" : "Data exchange formats",
-      icon: "📄",
-      color: "from-gray-500 to-gray-600",
-      category: lang === 'ar' ? "المؤسسات والتكامل" : "Enterprise & Integration"
-    },
-    {
-      title: "JSP",
-      description: lang === 'ar' ? "صفحات Java Server" : "Java Server Pages",
-      icon: "☕",
-      color: "from-orange-500 to-orange-600",
-      category: lang === 'ar' ? "المؤسسات والتكامل" : "Enterprise & Integration"
-    },
-    {
-      title: "ASP.NET",
-      description: lang === 'ar' ? "إطار عمل Microsoft" : "Microsoft framework",
-      icon: "🔷",
-      color: "from-purple-600 to-purple-700",
-      category: lang === 'ar' ? "المؤسسات والتكامل" : "Enterprise & Integration"
-    },
-    
-    // Development Tools
-    {
-      title: "Git & GitHub",
-      description: lang === 'ar' ? "إدارة الكود والتعاون" : "Code management and collaboration",
-      icon: "📚",
-      color: "from-gray-500 to-gray-600",
-      category: lang === 'ar' ? "أدوات التطوير" : "Development Tools"
-    },
-    {
-      title: "Bitbucket",
-      description: lang === 'ar' ? "إدارة الكود والتعاون" : "Code management and collaboration",
-      icon: "🔵",
-      color: "from-blue-500 to-blue-600",
-      category: lang === 'ar' ? "أدوات التطوير" : "Development Tools"
-    },
-    {
-      title: "SVN",
-      description: lang === 'ar' ? "نظام التحكم في الإصدارات" : "Version control system",
-      icon: "📦",
-      color: "from-orange-500 to-orange-600",
-      category: lang === 'ar' ? "أدوات التطوير" : "Development Tools"
-    },
-    {
-      title: "TFS",
-      description: lang === 'ar' ? "Team Foundation Server" : "Team Foundation Server",
-      icon: "🔷",
-      color: "from-blue-600 to-blue-700",
-      category: lang === 'ar' ? "أدوات التطوير" : "Development Tools"
-    },
-    {
-      title: "Rational Rose",
-      description: lang === 'ar' ? "أدوات النمذجة" : "Modeling tools",
-      icon: "🌹",
-      color: "from-pink-500 to-pink-600",
-      category: lang === 'ar' ? "أدوات التطوير" : "Development Tools"
-    },
-    {
-      title: "VS Code",
-      description: lang === 'ar' ? "بيئة التطوير" : "Development environment",
-      icon: "💻",
-      color: "from-blue-400 to-blue-500",
-      category: lang === 'ar' ? "أدوات التطوير" : "Development Tools"
-    },
-    {
-      title: "Postman",
-      description: lang === 'ar' ? "اختبار APIs" : "API testing",
-      icon: "📡",
-      color: "from-orange-400 to-orange-500",
-      category: lang === 'ar' ? "أدوات التطوير" : "Development Tools"
-    },
-    
-    // Methodologies
-    {
-      title: "Agile (Scrum/Kanban)",
-      description: lang === 'ar' ? "منهجيات التطوير الرشيقة" : "Agile development methodologies",
-      icon: "🔄",
-      color: "from-green-500 to-green-600",
-      category: lang === 'ar' ? "المنهجيات" : "Methodologies"
-    },
-    {
-      title: "Waterfall",
-      description: lang === 'ar' ? "منهجية التطوير التقليدية" : "Traditional development methodology",
-      icon: "🌊",
-      color: "from-blue-500 to-blue-600",
-      category: lang === 'ar' ? "المنهجيات" : "Methodologies"
-    },
-    {
-      title: "DevSecOps",
-      description: lang === 'ar' ? "الأمان في التطوير" : "Security in development",
-      icon: "🔒",
-      color: "from-red-500 to-red-600",
-      category: lang === 'ar' ? "المنهجيات" : "Methodologies"
-    }
-  ];
-
-  const filteredSkills = activeSkillFilter === 'all' 
-    ? allSkills 
-    : allSkills.filter(skill => skill.category === activeSkillFilter);
+  const { t, lang } = useLanguage();
 
   const handleContact = () => {
     // Open email client
     window.open('mailto:islammohamed12@gmail.com?subject=مشروع جديد - اسلام السيد', '_blank');
   };
 
-  const handleLinkedIn = () => {
-    // Open LinkedIn profile
-    window.open('https://www.linkedin.com/in/islammohamed92/', '_blank');
-  };
-
   const handleViewProjects = () => {
-    // Scroll to work section
-    setActiveTab('work');
-    document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
+    // Navigate to work page
+    window.location.href = '/work';
   };
 
-  // Testimonials data
-  const testimonials = [
+  const handleViewAbout = () => {
+    // Navigate to about page
+    window.location.href = '/about';
+  };
+
+  // Featured projects for home page
+  const featuredProjects = [
+    {
+      title: "FAHR AI Assistant",
+      role: lang === 'ar' ? "قائد فريق التطوير" : "Development Team Lead",
+      stack: "OpenAI, FAISS, React, Node.js, Python",
+      result: lang === 'ar' ? "تحسين الكفاءة 40%" : "40% Efficiency Improvement",
+      description: lang === 'ar' ? "تطوير نظام RAG آمن وقابل للتوسع باستخدام OpenAI و FAISS لدعم استعلامات الموارد البشرية" : "Developed a secure and scalable RAG system using OpenAI and FAISS to support HR queries",
+      image: "/project1.jpg",
+      date: "2024"
+    },
+    {
+      title: "FAHR Mobile App",
+      role: lang === 'ar' ? "مطور تطبيقات الجوال" : "Mobile App Developer",
+      stack: "React Native, IBM MobileFirst",
+      result: lang === 'ar' ? "خدمات HR على الجوال" : "Mobile HR Services",
+      description: lang === 'ar' ? "تطبيق React Native (Android & iOS) مبني بـ IBM MobileFirst، يقدم خدمات الموارد البشرية على الجوال" : "React Native app (Android & iOS) built with IBM MobileFirst, delivering HR services on mobile",
+      image: "/project3.jpg",
+      date: "2023"
+    },
+    {
+      title: "Ajman One App",
+      role: lang === 'ar' ? "مطور تطبيقات الجوال" : "Mobile App Developer",
+      stack: "React Native, IBM MobileFirst",
+      result: lang === 'ar' ? "خدمات e-wallet شاملة" : "Comprehensive E-Wallet Services",
+      description: lang === 'ar' ? "تطبيق جوال (iOS & Android) مطور بـ React Native و IBM MobileFirst، يقدم خدمات e-wallet ومدفوعات المرافق" : "Mobile app (iOS & Android) developed with React Native and IBM MobileFirst, offering e-wallet services and utility payments",
+      image: "/project4.jpg",
+      date: "2022"
+    }
+  ];
+
+  // LinkedIn testimonials
+  const linkedInTestimonials = [
     {
       quote: lang === 'ar' 
-        ? "اسلام مطور موهوب ومحترف. عمله على مشروعنا كان ممتازاً وتجاوز توقعاتنا. أنصح بالعمل معه بشدة."
-        : "Islam is a talented and professional developer. His work on our project was excellent and exceeded our expectations. I highly recommend working with him.",
-      name: "Ahmed Hassan",
-      position: lang === 'ar' ? "مدير تقني" : "Technical Manager",
-      company: "Tech Solutions UAE"
+        ? "اسلام من أفضل الأشخاص الذين عملت معهم وهو زميل مخلص، يفهم الأمور المعقدة. اسلام لاعب فريق موجه؛ مع كل مشكلة كان هناك حل. إنه خبير عالي في حلول وتقنيات التنقل، أنصح بشدة بالعمل مع اسلام."
+        : "Islam is one of the best among all people I have worked with and is a loyal colleague, understands complex matters. Islam is a oriented team player; with every problem there was a solution. He is high expert in Mobility solutions and technologies, I Highly recommend Islam.",
+      name: "Ahmed Refaie",
+      position: lang === 'ar' ? "مدير مشاريع التحول الرقمي" : "Digital Transformation Project/Program Manager",
+      company: "PMP®, PMI-ACP®"
     },
     {
       quote: lang === 'ar'
-        ? "تجربة رائعة في العمل مع اسلام. مهاراته التقنية واهتمامه بالتفاصيل جعلت المشروع نجاحاً كبيراً."
-        : "Amazing experience working with Islam. His technical skills and attention to detail made the project a huge success.",
-      name: "Sarah Johnson",
-      position: lang === 'ar' ? "مدير منتج" : "Product Manager",
-      company: "Innovation Labs"
+        ? "لقد كنت أعمل مع اسلام في RTA على تطبيقاتهم الجوالة منذ 18 شهراً. إنه متقن تقنياً، مخلص ومتحمس للعمل الجاد. إنه لاعب فريق جيد، مخطط وشخص قيّم كفرد. أنصح بخدماته."
+        : "I have been working with Islam in RTA on their mobile apps since last 18 months. He is technically sound, dedicated and passionate to hard work. He is a good team player, planner & a valuable person as an individual. I recommend his services.",
+      name: "Kausar Jahan",
+      position: lang === 'ar' ? "مدير تصميم UX/CX والمنتجات" : "Lead UX/CX & Product Design Manager",
+      company: "RTA"
     },
     {
       quote: lang === 'ar'
-        ? "اسلام مطور موثوق وملتزم. يسلم المشاريع في الوقت المحدد وبأعلى جودة. شريك رائع للعمل."
-        : "Islam is a reliable and committed developer. He delivers projects on time with the highest quality. A great partner to work with.",
-      name: "Mohammed Al-Rashid",
-      position: lang === 'ar' ? "رئيس تنفيذي" : "CEO",
-      company: "Digital Ventures"
+        ? "اسلام لديه شغف لتعلم التقنيات الجديدة، إنه عامل مجتهد، ويعرف الكثير من التقنيات المتعلقة بتطبيقات الجوال لكل من Native و Cross. ولديه إحساس بالإلحاح وملكية رائعة للعمل الذي يقوم به."
+        : "Islam has the passion to learn new technologies, he is a hard worker, and knows a lot of technologies related to the mobile applications for both native and cross. And he has the sense of urgency and has a great ownership for the work he is doing.",
+      name: "Mostafa Farahat",
+      position: lang === 'ar' ? "مهندس حلول" : "Solution Architect",
+      company: "IBM"
+    },
+    {
+      quote: lang === 'ar'
+        ? "عملت مع اسلام لمدة عام ونصف تقريباً. لديه مواهب ابتكارية ممتازة. عامل مجتهد، يعمل في فريق بموقف إيجابي، مهارات تواصل جيدة وموجه نحو العملاء."
+        : "I worked with Islam for about 1 years and half. He has excellent innovative talents. Hard worker, work on a team with positive attitude, good communication skills and customer oriented.",
+      name: "Wael Abdel Rahman",
+      position: lang === 'ar' ? "نائب مدير PMO" : "PMO Deputy Director",
+      company: "e-finance"
+    },
+    {
+      quote: lang === 'ar'
+        ? "فرد مخلص ومتفانٍ بوضوح لديه طموح للنجاح في أي بيئة معينة، مع نقاط قوة في تطوير تطبيقات الجوال."
+        : "A loyal and clearly dedicated individual who has an ambition to succeed in any given environment, with strengths in Mobile Application Development.",
+      name: "Mohamed Shebl Farrag",
+      position: lang === 'ar' ? "قائد تقني" : "Technical Lead",
+      company: "IBM Malaysia"
+    },
+    {
+      quote: lang === 'ar'
+        ? "بناءً على وقتي في العمل مع اسلام، أنصح به بشدة. إنه عامل مجتهد ومبادر يفهم بالضبط ما يدور حوله المشروع. ينتج عملاً عالي الجودة في الوقت المناسب. كما أنه يفهم المفاهيم الجديدة بسرعة ويقبل النقد البناء والتعليمات المتعلقة بعمله. ستستمتع بالعمل ولن تشعر بالملل أبداً مع عضو مبدع كهذا في فريقك."
+        : "Based on my time working with Islam, I recommend him very highly. He is a hard-working self-starter who invariably understands exactly what a project is all about. He produces high quality work in a timely fashion. Also he grasps new concepts quickly and accepts constructive criticism and instruction concerning his work. You will have fun working and never get bored of work with such a creative member at your team.",
+      name: "Mona Farag",
+      position: lang === 'ar' ? "مستشار تطبيقات وتجربة العمارة" : "Application Consultant & Experience Architecture",
+      company: "IBM"
+    },
+    {
+      quote: lang === 'ar'
+        ? "كان اسلام من أكثر المهنيين تفانياً خلال عمله في INTELLISC. يمكنني أن أنصح باسلام كشخص ذو تعليم عظيم ومهارات عميقة في حلول الأعمال. اسلام مطور موجه نحو التفاصيل، متألق وموجه نحو الأهداف. دائمًا قادر على التكيف مع بيئات العمل الجديدة."
+        : "Islam was one of the most dedicated professionals through his work at INTELLISC. I can recommend Islam as a person with great education and deep skills of business solutions. Islam is a detail oriented, brilliant and goal oriented Developer. Is always capable of adapting to new working environments.",
+      name: "Tarek Elywah",
+      position: lang === 'ar' ? "مدير هندسة" : "Engineering Manager",
+      company: "PMP®, PMI-ACP"
+    },
+    {
+      quote: lang === 'ar'
+        ? "اسلام هو ورقة الجوكر، إنه موثوق، فعال، لاعب فريق جيد، ويمكنه التسليم بجودة جيدة تحت ضغط هائل. إنه دائمًا حريص على الحفاظ على كود نظيف ودائمًا يبحث عن طرق لجعل المنتجات أكثر كفاءة في المعالجة وسهلة الصيانة. كان من دواعي سروري العمل معه."
+        : "Islam is a Joker card, he is reliable, efficient, a good team player, and can deliver with good quality under enormous pressure. He is always keen to keep a clean code and always looking for ways to make the products more efficient in processing and easy to maintain. It was a pleasure working with him.",
+      name: "Maha Ashour, MSc",
+      position: lang === 'ar' ? "رئيس تصميم التجربة" : "Head of Experience Design",
+      company: "Serco"
+    },
+    {
+      quote: lang === 'ar'
+        ? "اسلام، ذكي جداً مع مهارات إدارية وشخصية عالية ساعدته في إدارة والتحكم في مهامه وكذلك الآخرين. إنه موجه نحو الأهداف مع قدرة عالية على تحديد الأهداف والتعامل مع الأوهام والغموض المحيط."
+        : "Islam, is very smart with highly managerial and personal skills that helped him to manage and control his tasks as well as other people. He is objective oriented with high capability to identify goals and deal with surrounding illusion and ambiguities.",
+      name: "Nashwa Nassar",
+      position: lang === 'ar' ? "تصميم تجربة مدفوع بالبيانات" : "Data-Driven Experience Design",
+      company: "Ex-IBM"
+    },
+    {
+      quote: lang === 'ar'
+        ? "اسلام مطور برمجيات مخلص وموهوب عملت معه."
+        : "Islam is a highly dedicated and talented SW developer that i worked with him.",
+      name: "Shehab ElDin Tarek Salah",
+      position: lang === 'ar' ? "قائد التحول الرقمي" : "Digital Transformation Leader",
+      company: "Staff Software Engineer"
+    },
+    {
+      quote: lang === 'ar'
+        ? "اسلام مطور برمجيات مخلص وموهوب للغاية، إنه ذكي جداً ومتحمس للعمل، الابتكار والإبداع أثناء العمل من عاداته. استمر يا اسلام :)"
+        : "Islam is a highly dedicated and talented SW developer, he is very smart and enthusiastic about work, innovation and creativity during work is one of his habits. Keep it up Islam :)",
+      name: "Mohamed Abouzeid",
+      position: lang === 'ar' ? "قائد هندسة" : "Engineering Lead, Payments",
+      company: "TOGAF, OCJP, AWS CCP"
+    },
+    {
+      quote: lang === 'ar'
+        ? "اسلام مطور ذكي جداً ومخلص. كان يمكنه دائمًا العثور على طرق بسيطة لحل المشاكل. أظهر مهارته الممتازة في تحليل المشاكل. اسلام أيضًا شخص متعاون ولاعب فريق رائع."
+        : "Islam is a very smart and dedicated developer. He could always find simple ways to solve problems. He showed his excellent problem analysis skill. Islam is also an obliging person and a great team player.",
+      name: "Ahmed Moursi",
+      position: lang === 'ar' ? "مهندس Full-stack" : "Full-stack engineer",
+      company: "Software Developer"
     }
   ];
 
@@ -517,20 +199,13 @@ export default function Home() {
         url="https://islamelsayed.vercel.app"
       />
       
-      {/* Background Canvas */}
       <BackgroundCanvas />
-      
-      {/* Navigation */}
-      <Navigation activeTab={activeTab} onTabChange={setActiveTab} />
       
       <main className="relative z-10 min-h-screen pt-20">
         {/* Hero Section */}
-        <section id="home" className="relative py-8 sm:py-12 md:py-16 px-4 bg-gradient-to-b from-white/80 to-white/60 backdrop-blur-sm">
+        <section className="relative py-8 sm:py-12 md:py-16 px-4 bg-gradient-to-b from-white/80 to-white/60 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-8 sm:mb-12 md:mb-16">
-              <div className="inline-block px-6 py-3 bg-gradient-to-r from-blue-50/90 to-purple-50/90 rounded-full mb-6 sm:mb-8 border border-blue-100/50 hero-welcome backdrop-blur-sm">
-                <span className="text-sm sm:text-base font-semibold text-blue-700">{t.welcome}</span>
-              </div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 gradient-text leading-tight hero-title">
                 {t.name}
               </h1>
@@ -544,187 +219,48 @@ export default function Home() {
                 <Button onClick={handleViewProjects} variant="outline" className="btn-secondary w-full sm:w-auto text-lg">
                   {t.viewProjects}
                 </Button>
+                <Button onClick={handleViewAbout} variant="outline" className="btn-secondary w-full sm:w-auto text-lg">
+                  {lang === 'ar' ? 'تعرف علي' : 'About Me'}
+                </Button>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Experience Stats Section */}
+        {/* Experience Summary */}
         <ExperienceStats />
-
-        {/* Skills Section */}
-        <section id="about" className="py-8 sm:py-12 px-4 bg-white/60 backdrop-blur-sm">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-8 sm:mb-12">
-              <h2 className="section-title gradient-text">{t.skillsTitle}</h2>
-              <p className="section-subtitle">{t.skillsSubtitle}</p>
-            </div>
-            
-            <SkillsStats skills={allSkills} lang={lang} />
-            <SkillsFilter key={lang} onFilterChange={setActiveSkillFilter} />
-            
-            <AutoScrollSkills skills={filteredSkills} lang={lang} />
-          </div>
-        </section>
 
         {/* Approach Section */}
         <ApproachSection />
 
-        {/* Projects Section */}
-        <section id="work" className="py-8 sm:py-12 px-4 bg-white/60 backdrop-blur-sm">
+        {/* Featured Projects Section */}
+        <section className="py-8 sm:py-12 px-4 bg-white/60 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-8 sm:mb-12">
               <h2 className="section-title gradient-text">{t.projectsTitle}</h2>
               <p className="section-subtitle">{t.projectsSubtitle}</p>
             </div>
             
-            {/* Sticky Cards Container */}
-            <div className="relative">
-              <div className="sticky-cards-container">
-                <div className="sticky-card" style={{ zIndex: 1 }}>
-                  <ProjectCard 
-                    title="FAHR AI Assistant"
-                    role={lang === 'ar' ? "قائد فريق التطوير" : "Development Team Lead"}
-                    stack="OpenAI, FAISS, React, Node.js, Python"
-                    result={lang === 'ar' ? "تحسين الكفاءة 40%" : "40% Efficiency Improvement"}
-                    description={lang === 'ar' ? "تطوير نظام RAG آمن وقابل للتوسع باستخدام OpenAI و FAISS لدعم استعلامات الموارد البشرية. دمج وكلاء RAG للتفاعلات متعددة الخطوات" : "Developed a secure and scalable RAG system using OpenAI and FAISS to support HR queries. Integrated RAG agents for multi-step interactions"}
-                    image="/project1.jpg"
-                    date="2024"
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {featuredProjects.map((project, index) => (
+                <div key={index} className="transform hover:scale-105 transition-transform duration-300">
+              <ProjectCard 
+                    title={project.title}
+                    role={project.role}
+                    stack={project.stack}
+                    result={project.result}
+                    description={project.description}
+                    image={project.image}
+                    date={project.date}
                   />
                 </div>
-                
-                <div className="sticky-card" style={{ zIndex: 2 }}>
-                  <ProjectCard 
-                    title="FAHR HR UXUI"
-                    role={lang === 'ar' ? "مهندس واجهة المستخدم" : "UX/UI Engineer"}
-                    stack="React, Next.js, IBM MobileFirst"
-                    result={lang === 'ar' ? "منصة إدارة شاملة" : "Comprehensive Management Platform"}
-                    description={lang === 'ar' ? "تطبيق ويب React مبني بـ Next.js ومنصة IBM MobileFirst للهيئة الاتحادية للموارد البشرية الحكومية" : "React web application built with Next.js and IBM MobileFirst platform for the Federal Authority for Government Human Resources"}
-                    image="/project2.jpg"
-                    date="2023"
-                  />
-                </div>
-                
-                <div className="sticky-card" style={{ zIndex: 3 }}>
-                  <ProjectCard 
-                    title="FAHR Mobile App"
-                    role={lang === 'ar' ? "مطور تطبيقات الجوال" : "Mobile App Developer"}
-                    stack="React Native, IBM MobileFirst"
-                    result={lang === 'ar' ? "خدمات HR على الجوال" : "Mobile HR Services"}
-                    description={lang === 'ar' ? "تطبيق React Native (Android & iOS) مبني بـ IBM MobileFirst، يقدم خدمات الموارد البشرية على الجوال" : "React Native app (Android & iOS) built with IBM MobileFirst, delivering HR services on mobile"}
-                    image="/project3.jpg"
-                    date="2023"
-                    appStoreLinks={{
-                      appStore: "https://apps.apple.com/us/app/fahr-smart-app/id918247230",
-                      playStore: "https://play.google.com/store/apps/details?id=com.Fahr"
-                    }}
-                  />
-                </div>
-                
-                <div className="sticky-card" style={{ zIndex: 4 }}>
-                  <ProjectCard 
-                    title="Ajman One App"
-                    role={lang === 'ar' ? "مطور تطبيقات الجوال" : "Mobile App Developer"}
-                    stack="React Native, IBM MobileFirst"
-                    result={lang === 'ar' ? "خدمات e-wallet شاملة" : "Comprehensive E-Wallet Services"}
-                    description={lang === 'ar' ? "تطبيق جوال (iOS & Android) مطور بـ React Native و IBM MobileFirst، يقدم خدمات e-wallet ومدفوعات المرافق" : "Mobile app (iOS & Android) developed with React Native and IBM MobileFirst, offering e-wallet services and utility payments"}
-                    image="/project4.jpg"
-                    date="2022"
-                    appStoreLinks={{
-                      appStore: "https://apps.apple.com/ae/app/ajman-one/id1234567891",
-                      playStore: "https://play.google.com/store/apps/details?id=ae.ajman.one"
-                    }}
-                  />
-                </div>
-                
-                <div className="sticky-card" style={{ zIndex: 5 }}>
-                  <ProjectCard 
-                    title="RTA Mobile Suite"
-                    role={lang === 'ar' ? "قائد فريق التطوير" : "Development Team Lead"}
-                    stack="IBM MobileFirst, React Native"
-                    result={lang === 'ar' ? "منصة موحدة متعددة التطبيقات" : "Unified Multi-App Platform"}
-                    description={lang === 'ar' ? "منصة موحدة لتطبيقات RTA متعددة (السائقين والمركبات، الشركات، المواقف الذكية، RTA دبي)" : "Unified platform for multiple RTA apps (Drivers & Vehicles, Companies, Smart Parking, RTA Dubai)"}
-                    image="/project5.jpg"
-                    date="2022"
-                    appStoreLinks={{
-                      appStore: "https://apps.apple.com/ae/app/rta-dubai/id426109507",
-                      playStore: "https://play.google.com/store/apps/details?id=com.rta.rtadubai"
-                    }}
-                  />
-                </div>
-                
-                <div className="sticky-card" style={{ zIndex: 6 }}>
-                  <ProjectCard 
-                    title="Al Rajhi Bank App"
-                    role={lang === 'ar' ? "مطور تطبيقات الجوال" : "Mobile App Developer"}
-                    stack="React Native, IBM MobileFirst"
-                    result={lang === 'ar' ? "تطبيق بنكي متعدد المنصات" : "Cross-Platform Banking App"}
-                    description={lang === 'ar' ? "تطبيق e-banking متعدد المنصات (Android, iOS) وتطبيق Windows Phone أصلي لبنك الراجحي، السعودية" : "Cross-platform e-banking app (Android, iOS) and native Windows Phone app for Al Rajhi Bank, Saudi Arabia"}
-                    image="/project6.jpg"
-                    date="2021"
-                    appStoreLinks={{
-                      appStore: "https://apps.apple.com/sa/app/al-rajhi-bank/id1234567893",
-                      playStore: "https://play.google.com/store/apps/details?id=sa.com.alrajhi.bank"
-                    }}
-                  />
-                </div>
-                
-                <div className="sticky-card" style={{ zIndex: 7 }}>
-                  <ProjectCard 
-                    title="Al Rajhi Takaful App"
-                    role={lang === 'ar' ? "مطور تطبيقات الجوال" : "Mobile App Developer"}
-                    stack="React Native, IBM MobileFirst"
-                    result={lang === 'ar' ? "حل تأمين إلكتروني" : "Electronic Insurance Solution"}
-                    description={lang === 'ar' ? "حل e-insurance متعدد المنصات (Android, iOS) للراجحي تكافل، السعودية" : "Cross-platform e-insurance solution (Android, iOS) for Al Rajhi Takaful, Saudi Arabia"}
-                    image="/project7.jpg"
-                    date="2021"
-                    appStoreLinks={{
-                      appStore: "https://apps.apple.com/sa/app/al-rajhi-takaful/id1234567894",
-                      playStore: "https://play.google.com/store/apps/details?id=sa.com.alrajhi.takaful"
-                    }}
-                  />
-                </div>
-                
-                <div className="sticky-card" style={{ zIndex: 8 }}>
-                  <ProjectCard 
-                    title="Al Bilad App"
-                    role={lang === 'ar' ? "مطور تطبيقات الجوال" : "Mobile App Developer"}
-                    stack="React Native, IBM MobileFirst"
-                    result={lang === 'ar' ? "تطبيق تأمين متعدد المنصات" : "Cross-Platform Insurance App"}
-                    description={lang === 'ar' ? "تطبيق تأمين متعدد المنصات (Android, iOS) لبنك البلد، السعودية" : "Cross-platform insurance app (Android, iOS) for Al Bilad Bank, Saudi Arabia"}
-                    image="/project8.jpg"
-                    date="2020"
-                    appStoreLinks={{
-                      appStore: "https://apps.apple.com/sa/app/al-bilad/id1234567895",
-                      playStore: "https://play.google.com/store/apps/details?id=sa.com.bilad"
-                    }}
-                  />
-                </div>
-                
-                <div className="sticky-card" style={{ zIndex: 9 }}>
-                  <ProjectCard 
-                    title="RTA Chatbot Project"
-                    role={lang === 'ar' ? "مطور AI" : "AI Developer"}
-                    stack="AI, Chatbot, AWS"
-                    result={lang === 'ar' ? "تحسين إمكانية الوصول للخدمات" : "Improved Service Accessibility"}
-                    description={lang === 'ar' ? "مساهمة في تطوير chatbot مدعوم بالذكاء الاصطناعي لهيئة الطرق والمواصلات بدبي، تحسين إمكانية الوصول للخدمات والأتمتة" : "Contributed to developing AI-powered chatbot for Dubai Roads and Transport Authority, improving service accessibility and automation"}
-                    image="/project9.jpg"
-                    date="2023"
-                  />
-                </div>
-                
-                <div className="sticky-card" style={{ zIndex: 10 }}>
-                  <ProjectCard 
-                    title="Himma Web App"
-                    role={lang === 'ar' ? "مطور ويب" : "Web Developer"}
-                    stack="React, Node.js, MongoDB"
-                    result={lang === 'ar' ? "تطبيق ويب شامل" : "Comprehensive Web Application"}
-                    description={lang === 'ar' ? "تطوير تطبيق ويب شامل مع حلول متكاملة مثل AjmanPay integration و UAE Pass authentication" : "Developed a comprehensive web application with integrated solutions like AjmanPay integration and UAE Pass authentication"}
-                    image="/project10.jpg"
-                    date="2022"
-                  />
-                </div>
-              </div>
+              ))}
+            </div>
+            
+            <div className="text-center mt-8">
+              <Button onClick={handleViewProjects} className="btn-primary text-lg">
+                {lang === 'ar' ? 'عرض جميع المشاريع' : 'View All Projects'}
+              </Button>
             </div>
           </div>
         </section>
@@ -736,42 +272,60 @@ export default function Home() {
               <h2 className="section-title gradient-text">{t.testimonialsTitle}</h2>
               <p className="section-subtitle">{t.testimonialsSubtitle}</p>
             </div>
-            <div className="grid gap-8">
-              {testimonials.map((testimonial, index) => (
-                <TestimonialCard key={index} {...testimonial} lang={lang} />
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {linkedInTestimonials.map((testimonial, index) => (
+                <div key={index} className="bg-white/80 backdrop-blur-sm rounded-lg p-6 shadow-lg border border-gray-200/50">
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                        <span className="text-white font-bold text-lg">
+                          {testimonial.name.charAt(0)}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-gray-700 mb-4 italic">"{testimonial.quote}"</p>
+                      <div>
+                        <p className="font-semibold text-gray-900">{testimonial.name}</p>
+                        <p className="text-sm text-gray-600">{testimonial.position}</p>
+                        <p className="text-sm text-gray-500">{testimonial.company}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* CV Download Section */}
-        <section className="py-8 sm:py-12 px-4 bg-white/60 backdrop-blur-sm cv-section">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-8 sm:mb-12">
-              <h2 className="section-title gradient-text">{t.cvTitle}</h2>
-              <p className="section-subtitle">{t.cvSubtitle}</p>
+        {/* Copyright Section */}
+        <footer className="py-8 px-4 bg-gray-50/80 backdrop-blur-sm">
+          <div className="max-w-7xl mx-auto text-center">
+            <div className="flex flex-col sm:flex-row justify-between items-center">
+              <div className="mb-4 sm:mb-0">
+                <p className="text-gray-600">
+                  © 2024 {lang === 'ar' ? 'اسلام السيد' : 'Islam Elsayed'}. {lang === 'ar' ? 'جميع الحقوق محفوظة' : 'All rights reserved'}.
+                </p>
+              </div>
+              <div className="flex space-x-6">
+                <a 
+                  href="https://www.linkedin.com/in/islammohamed92/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-600 hover:text-blue-600 transition-colors"
+                >
+                  LinkedIn
+                </a>
+                <a 
+                  href="mailto:islammohamed12@gmail.com"
+                  className="text-gray-600 hover:text-blue-600 transition-colors"
+                >
+                  {lang === 'ar' ? 'تواصل' : 'Contact'}
+                </a>
+              </div>
             </div>
-            <CVViewer />
           </div>
-        </section>
-
-        {/* Contact Section */}
-        <section id="contact" className="py-8 sm:py-12 px-4 contact-section bg-white/60 backdrop-blur-sm">
-          <div className="max-w-5xl mx-auto text-center">
-            <h2 className="section-title gradient-text">{t.contactTitle}</h2>
-            <p className="section-subtitle mb-6 sm:mb-8">
-              {t.contactSubtitle}
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 px-4">
-              <Button onClick={handleContact} className="btn-primary w-full sm:w-auto text-lg">
-                {t.sendMessage}
-              </Button>
-              <Button onClick={handleLinkedIn} variant="outline" className="btn-secondary w-full sm:w-auto text-lg">
-                {t.linkedin}
-              </Button>
-            </div>
-          </div>
-        </section>
+        </footer>
         
         {/* Floating Chat */}
         <FloatingChat />
