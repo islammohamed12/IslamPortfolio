@@ -72,43 +72,52 @@ export default function AutoScrollSkills({ skills, lang }) {
     };
   }, [isVisible, scrollDirection]);
 
-  const firstHalf = skills.slice(0, Math.ceil(skills.length / 2));
-  const secondHalf = skills.slice(Math.ceil(skills.length / 2));
+  // Dynamically determine number of rows based on skills count
+  const getNumberOfRows = (skillsCount) => {
+    if (skillsCount <= 8) return 1;
+    if (skillsCount <= 16) return 2;
+    return 3;
+  };
+
+  const numberOfRows = getNumberOfRows(skills.length);
+  const skillsPerRow = Math.ceil(skills.length / numberOfRows);
+
+  // Distribute skills across the determined number of rows
+  const rows = [];
+  for (let i = 0; i < numberOfRows; i++) {
+    const startIndex = i * skillsPerRow;
+    const endIndex = startIndex + skillsPerRow;
+    rows.push(skills.slice(startIndex, endIndex));
+  }
+
+  // Calculate height based on number of rows
+  const cardHeight = 80; // Approximate height of each card
+  const rowGap = 12; // gap-3 = 12px
+  const containerHeight = (cardHeight * numberOfRows) + (rowGap * (numberOfRows - 1)) + 16; // 16px for bottom padding
 
   return (
     <div className="relative" ref={containerRef}>
-      {/* Horizontal scrolling container with fixed height */}
-      <div className="overflow-x-auto overflow-y-hidden h-[500px] pb-4 skills-scroll-container">
-        <div className="flex flex-col gap-6 min-w-max">
-          {/* First Row */}
-          <div className="flex gap-4 sm:gap-6 skills-row-1">
-            {firstHalf.map((skill, index) => (
-              <div key={index} className="w-48 sm:w-56 flex-shrink-0">
-                <SkillCard 
-                  title={skill.title}
-                  description={skill.description}
-                  icon={skill.icon}
-                  color={skill.color}
-                  category={skill.category}
-                />
-              </div>
-            ))}
-          </div>
-          
-          {/* Second Row */}
-          <div className="flex gap-4 sm:gap-6 skills-row-2">
-            {secondHalf.map((skill, index) => (
-              <div key={index + firstHalf.length} className="w-48 sm:w-56 flex-shrink-0">
-                <SkillCard 
-                  title={skill.title}
-                  description={skill.description}
-                  icon={skill.icon}
-                  color={skill.color}
-                  category={skill.category}
-                />
-              </div>
-            ))}
-          </div>
+      {/* Horizontal scrolling container with dynamic height */}
+      <div 
+        className="overflow-x-auto overflow-y-hidden pb-4 skills-scroll-container"
+        style={{ height: `${containerHeight}px` }}
+      >
+        <div className="flex flex-col gap-3 min-w-max">
+          {rows.map((rowSkills, rowIndex) => (
+            <div key={rowIndex} className="flex gap-3 sm:gap-4">
+              {rowSkills.map((skill, skillIndex) => (
+                <div key={skillIndex + rowIndex * skillsPerRow} className="w-40 sm:w-44 flex-shrink-0">
+                  <SkillCard 
+                    title={skill.title}
+                    description={skill.description}
+                    icon={skill.icon}
+                    color={skill.color}
+                    category={skill.category}
+                  />
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
       

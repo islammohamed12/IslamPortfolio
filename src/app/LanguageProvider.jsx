@@ -21,7 +21,9 @@ const translations = {
     linkedin: 'التواصل عبر LinkedIn',
     chatGreeting: 'مرحباً! 👋 أنا مساعد اسلام السيد الشخصي. يمكنني مساعدتك في معرفة المزيد عن: مهاراتي التقنية وخبراتي، المشاريع التي عملت عليها، خبراتي في تطوير التطبيقات، معلومات عن سيرتي الذاتية. اسألني أي شيء تريد معرفته عن اسلام السيد! 😊',
     chatHeader: 'مساعد اسلام السيد',
-    chatPlaceholder: 'اكتب رسالتك...'
+    chatPlaceholder: 'اكتب رسالتك...',
+    testimonialsTitle: 'آراء العملاء',
+    testimonialsSubtitle: 'ماذا يقول عملائي عن تجربتهم في العمل معي'
   },
   en: {
     welcome: 'Welcome to my personal website',
@@ -39,9 +41,11 @@ const translations = {
     contactSubtitle: 'Do you have a project to discuss? Feel free to contact me',
     sendMessage: 'Send Message',
     linkedin: 'Connect via LinkedIn',
-    chatGreeting: 'Hello! 👋 I am Islam Elsayed’s personal assistant. I can help you learn more about: my technical skills and experience, projects I have worked on, my mobile development expertise, and my CV. Ask me anything you want to know about Islam Elsayed! 😊',
+    chatGreeting: 'Hello! 👋 I am Islam Elsayed\'s personal assistant. I can help you learn more about: my technical skills and experience, projects I have worked on, my mobile development expertise, and my CV. Ask me anything you want to know about Islam Elsayed! 😊',
     chatHeader: 'Islam Elsayed Assistant',
-    chatPlaceholder: 'Type your message...'
+    chatPlaceholder: 'Type your message...',
+    testimonialsTitle: 'Client Testimonials',
+    testimonialsSubtitle: 'What my clients say about working with me'
   }
 };
 

@@ -524,4 +524,30 @@
   .skills-scroll-container {
     scroll-behavior: smooth;
   }
+
+  /* Navigation Styles */
+  .nav-tab {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-tab:hover {
+    transform: translateY(-1px);
+  }
+
+  /* Smooth scroll behavior for navigation */
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+
+  /* Navigation backdrop blur effect */
+  .nav-backdrop {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Clean navigation underline animation */
+  .nav-underline {
+    transition: transform 0.3s ease;
+  }
 } 

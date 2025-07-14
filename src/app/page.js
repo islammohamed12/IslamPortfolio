@@ -4,10 +4,15 @@ import { Button } from '@/components/ui/button';
 import FloatingChat from '../components/FloatingChat';
 import ProjectCard from '../components/ProjectCard';
 import SkillCard from '../components/SkillCard';
-import CVDownload from '../components/CVDownload';
+import CVViewer from '../components/CVViewer';
 import SkillsFilter from '../components/SkillsFilter';
 import SkillsStats from '../components/SkillsStats';
 import AutoScrollSkills from '../components/AutoScrollSkills';
+import ExperienceStats from '../components/ExperienceStats';
+import ApproachSection from '../components/ApproachSection';
+import TestimonialCard from '../components/TestimonialCard';
+import BackgroundCanvas from '../components/BackgroundCanvas';
+import Navigation from '../components/Navigation';
 import { useLanguage } from './LanguageProvider';
 import DynamicLayout from './DynamicLayout';
 import SEO from '../components/SEO';
@@ -15,12 +20,32 @@ import SEO from '../components/SEO';
 
 export default function Home() {
   const [activeSkillFilter, setActiveSkillFilter] = useState('all');
+  const [activeTab, setActiveTab] = useState('home');
   const { t, lang, setLang } = useLanguage();
 
   // Reset filter when language changes
   useEffect(() => {
     setActiveSkillFilter('all');
   }, [lang]);
+
+  // Update active tab based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'work', 'contact'];
+      const scrollPosition = window.scrollY + 150; // Offset for navigation
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section && scrollPosition >= section.offsetTop) {
+          setActiveTab(sections[i]);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const allSkills = [
     // Mobile Development
@@ -419,9 +444,38 @@ export default function Home() {
   };
 
   const handleViewProjects = () => {
-    // Scroll to projects section
-    document.getElementById('projects-section')?.scrollIntoView({ behavior: 'smooth' });
+    // Scroll to work section
+    setActiveTab('work');
+    document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  // Testimonials data
+  const testimonials = [
+    {
+      quote: lang === 'ar' 
+        ? "اسلام مطور موهوب ومحترف. عمله على مشروعنا كان ممتازاً وتجاوز توقعاتنا. أنصح بالعمل معه بشدة."
+        : "Islam is a talented and professional developer. His work on our project was excellent and exceeded our expectations. I highly recommend working with him.",
+      name: "Ahmed Hassan",
+      position: lang === 'ar' ? "مدير تقني" : "Technical Manager",
+      company: "Tech Solutions UAE"
+    },
+    {
+      quote: lang === 'ar'
+        ? "تجربة رائعة في العمل مع اسلام. مهاراته التقنية واهتمامه بالتفاصيل جعلت المشروع نجاحاً كبيراً."
+        : "Amazing experience working with Islam. His technical skills and attention to detail made the project a huge success.",
+      name: "Sarah Johnson",
+      position: lang === 'ar' ? "مدير منتج" : "Product Manager",
+      company: "Innovation Labs"
+    },
+    {
+      quote: lang === 'ar'
+        ? "اسلام مطور موثوق وملتزم. يسلم المشاريع في الوقت المحدد وبأعلى جودة. شريك رائع للعمل."
+        : "Islam is a reliable and committed developer. He delivers projects on time with the highest quality. A great partner to work with.",
+      name: "Mohammed Al-Rashid",
+      position: lang === 'ar' ? "رئيس تنفيذي" : "CEO",
+      company: "Digital Ventures"
+    }
+  ];
 
   return (
     <DynamicLayout>
@@ -462,12 +516,19 @@ export default function Home() {
         image="/og-image.jpg"
         url="https://islamelsayed.vercel.app"
       />
-      <main className="min-h-screen">
+      
+      {/* Background Canvas */}
+      <BackgroundCanvas />
+      
+      {/* Navigation */}
+      <Navigation activeTab={activeTab} onTabChange={setActiveTab} />
+      
+      <main className="relative z-10 min-h-screen pt-20">
         {/* Hero Section */}
-        <section className="relative py-8 sm:py-12 md:py-16 px-4 bg-gradient-to-b from-gray-50/50 to-white">
+        <section id="home" className="relative py-8 sm:py-12 md:py-16 px-4 bg-gradient-to-b from-white/80 to-white/60 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-8 sm:mb-12 md:mb-16">
-              <div className="inline-block px-6 py-3 bg-gradient-to-r from-blue-50 to-purple-50 rounded-full mb-6 sm:mb-8 border border-blue-100 hero-welcome">
+              <div className="inline-block px-6 py-3 bg-gradient-to-r from-blue-50/90 to-purple-50/90 rounded-full mb-6 sm:mb-8 border border-blue-100/50 hero-welcome backdrop-blur-sm">
                 <span className="text-sm sm:text-base font-semibold text-blue-700">{t.welcome}</span>
               </div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 gradient-text leading-tight hero-title">
@@ -488,8 +549,11 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Experience Stats Section */}
+        <ExperienceStats />
+
         {/* Skills Section */}
-        <section className="py-8 sm:py-12 px-4 bg-gray-50/30">
+        <section id="about" className="py-8 sm:py-12 px-4 bg-white/60 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-8 sm:mb-12">
               <h2 className="section-title gradient-text">{t.skillsTitle}</h2>
@@ -503,8 +567,11 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Approach Section */}
+        <ApproachSection />
+
         {/* Projects Section */}
-        <section id="projects-section" className="py-8 sm:py-12 px-4">
+        <section id="work" className="py-8 sm:py-12 px-4 bg-white/60 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-8 sm:mb-12">
               <h2 className="section-title gradient-text">{t.projectsTitle}</h2>
@@ -514,7 +581,7 @@ export default function Home() {
             {/* Sticky Cards Container */}
             <div className="relative">
               <div className="sticky-cards-container">
-                <div className="sticky-card" style={{ zIndex: 10 }}>
+                <div className="sticky-card" style={{ zIndex: 1 }}>
                   <ProjectCard 
                     title="FAHR AI Assistant"
                     role={lang === 'ar' ? "قائد فريق التطوير" : "Development Team Lead"}
@@ -526,7 +593,7 @@ export default function Home() {
                   />
                 </div>
                 
-                <div className="sticky-card" style={{ zIndex: 9 }}>
+                <div className="sticky-card" style={{ zIndex: 2 }}>
                   <ProjectCard 
                     title="FAHR HR UXUI"
                     role={lang === 'ar' ? "مهندس واجهة المستخدم" : "UX/UI Engineer"}
@@ -538,7 +605,7 @@ export default function Home() {
                   />
                 </div>
                 
-                <div className="sticky-card" style={{ zIndex: 8 }}>
+                <div className="sticky-card" style={{ zIndex: 3 }}>
                   <ProjectCard 
                     title="FAHR Mobile App"
                     role={lang === 'ar' ? "مطور تطبيقات الجوال" : "Mobile App Developer"}
@@ -554,7 +621,7 @@ export default function Home() {
                   />
                 </div>
                 
-                <div className="sticky-card" style={{ zIndex: 7 }}>
+                <div className="sticky-card" style={{ zIndex: 4 }}>
                   <ProjectCard 
                     title="Ajman One App"
                     role={lang === 'ar' ? "مطور تطبيقات الجوال" : "Mobile App Developer"}
@@ -570,7 +637,7 @@ export default function Home() {
                   />
                 </div>
                 
-                <div className="sticky-card" style={{ zIndex: 6 }}>
+                <div className="sticky-card" style={{ zIndex: 5 }}>
                   <ProjectCard 
                     title="RTA Mobile Suite"
                     role={lang === 'ar' ? "قائد فريق التطوير" : "Development Team Lead"}
@@ -586,7 +653,7 @@ export default function Home() {
                   />
                 </div>
                 
-                <div className="sticky-card" style={{ zIndex: 5 }}>
+                <div className="sticky-card" style={{ zIndex: 6 }}>
                   <ProjectCard 
                     title="Al Rajhi Bank App"
                     role={lang === 'ar' ? "مطور تطبيقات الجوال" : "Mobile App Developer"}
@@ -602,7 +669,7 @@ export default function Home() {
                   />
                 </div>
                 
-                <div className="sticky-card" style={{ zIndex: 4 }}>
+                <div className="sticky-card" style={{ zIndex: 7 }}>
                   <ProjectCard 
                     title="Al Rajhi Takaful App"
                     role={lang === 'ar' ? "مطور تطبيقات الجوال" : "Mobile App Developer"}
@@ -618,7 +685,7 @@ export default function Home() {
                   />
                 </div>
                 
-                <div className="sticky-card" style={{ zIndex: 3 }}>
+                <div className="sticky-card" style={{ zIndex: 8 }}>
                   <ProjectCard 
                     title="Al Bilad App"
                     role={lang === 'ar' ? "مطور تطبيقات الجوال" : "Mobile App Developer"}
@@ -634,7 +701,7 @@ export default function Home() {
                   />
                 </div>
                 
-                <div className="sticky-card" style={{ zIndex: 2 }}>
+                <div className="sticky-card" style={{ zIndex: 9 }}>
                   <ProjectCard 
                     title="RTA Chatbot Project"
                     role={lang === 'ar' ? "مطور AI" : "AI Developer"}
@@ -646,7 +713,7 @@ export default function Home() {
                   />
                 </div>
                 
-                <div className="sticky-card" style={{ zIndex: 1 }}>
+                <div className="sticky-card" style={{ zIndex: 10 }}>
                   <ProjectCard 
                     title="Himma Web App"
                     role={lang === 'ar' ? "مطور ويب" : "Web Developer"}
@@ -662,19 +729,34 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Testimonials Section */}
+        <section className="py-8 sm:py-12 px-4 testimonials-section bg-white/60 backdrop-blur-sm">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="section-title gradient-text">{t.testimonialsTitle}</h2>
+              <p className="section-subtitle">{t.testimonialsSubtitle}</p>
+            </div>
+            <div className="grid gap-8">
+              {testimonials.map((testimonial, index) => (
+                <TestimonialCard key={index} {...testimonial} lang={lang} />
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* CV Download Section */}
-        <section className="py-8 sm:py-12 px-4 bg-gray-50/30 cv-section">
+        <section className="py-8 sm:py-12 px-4 bg-white/60 backdrop-blur-sm cv-section">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-8 sm:mb-12">
               <h2 className="section-title gradient-text">{t.cvTitle}</h2>
               <p className="section-subtitle">{t.cvSubtitle}</p>
             </div>
-            <CVDownload />
+            <CVViewer />
           </div>
         </section>
 
         {/* Contact Section */}
-        <section className="py-8 sm:py-12 px-4 contact-section">
+        <section id="contact" className="py-8 sm:py-12 px-4 contact-section bg-white/60 backdrop-blur-sm">
           <div className="max-w-5xl mx-auto text-center">
             <h2 className="section-title gradient-text">{t.contactTitle}</h2>
             <p className="section-subtitle mb-6 sm:mb-8">
