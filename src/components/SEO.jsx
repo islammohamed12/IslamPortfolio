@@ -8,7 +8,7 @@ export default function SEO({
   keywords = [], 
   image = '/og-image.jpg',
   type = 'website',
-  url = 'https://islamelsayed.com'
+  url = 'https://islamelsayed.vercel.app'
 }) {
   const { lang } = useLanguage();
 

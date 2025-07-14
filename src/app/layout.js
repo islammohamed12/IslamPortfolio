@@ -33,7 +33,7 @@ export const metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://islamelsayed.com'),
+  metadataBase: new URL('https://islamelsayed.vercel.app'),
   alternates: {
     canonical: '/',
     languages: {
@@ -45,7 +45,7 @@ export const metadata = {
     type: 'website',
     locale: 'en_US',
     alternateLocale: 'ar_SA',
-    url: 'https://islamelsayed.com',
+    url: 'https://islamelsayed.vercel.app',
     title: 'Islam Elsayed - Mobile App Developer & Team Lead',
     description: 'Experienced Mobile App Developer and Development Team Lead specializing in React Native, IBM MobileFirst, and cross-platform development.',
     siteName: 'Islam Elsayed Portfolio',
@@ -148,7 +148,7 @@ export default function RootLayout({ children }) {
               "name": "Islam Elsayed",
               "jobTitle": "Mobile App Developer & Team Lead",
               "description": "Experienced Mobile App Developer and Development Team Lead specializing in React Native, IBM MobileFirst, and cross-platform development.",
-              "url": "https://islamelsayed.com",
+              "url": "https://islamelsayed.vercel.app",
               "sameAs": [
                 "https://linkedin.com/in/islamelsayed",
                 "https://github.com/islamelsayed"

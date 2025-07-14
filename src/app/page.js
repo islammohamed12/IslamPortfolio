@@ -460,7 +460,7 @@ export default function Home() {
           'Dubai Developer'
         ]}
         image="/og-image.jpg"
-        url="https://islamelsayed.com"
+        url="https://islamelsayed.vercel.app"
       />
       <main className="min-h-screen">
         {/* Hero Section */}
