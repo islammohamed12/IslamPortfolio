@@ -62,6 +62,48 @@
 /* Fallback to Google Fonts if local fonts fail to load */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&family=Cairo:wght@300;400;500;600;700;800&display=swap');
 
+/* Sticky Cards Styles */
+.sticky-cards-container {
+  position: relative;
+  min-height: 100vh;
+  padding: 2rem 0;
+}
+
+.sticky-card {
+  position: sticky;
+  top: 2rem;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.sticky-card:hover {
+  transform: scale(1.02);
+}
+
+/* Ensure cards have proper spacing and stacking */
+.sticky-card .project-card {
+  margin: 0 auto;
+  max-width: 800px;
+  width: 100%;
+}
+
+/* Responsive adjustments for sticky cards */
+@media (max-width: 768px) {
+  .sticky-cards-container {
+    padding: 1rem 0;
+  }
+  
+  .sticky-card {
+    top: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .sticky-card .project-card {
+    max-width: 100%;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
