@@ -5,6 +5,7 @@ import DynamicLayout from '../DynamicLayout';
 import SEO from '../../components/SEO';
 import ProjectCard from '../../components/ProjectCard';
 import BackgroundCanvas from '../../components/BackgroundCanvas';
+import FloatingChat from '../../components/FloatingChat';
 
 export default function WorkPage() {
   const { t, lang } = useLanguage();
@@ -37,7 +38,7 @@ export default function WorkPage() {
       
       <main className="relative z-10 min-h-screen pt-20">
         {/* Projects Section */}
-        <section className="py-8 sm:py-12 px-4 bg-white/60 backdrop-blur-sm">
+        <section className="py-8 sm:py-12 px-4 bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-8 sm:mb-12">
               <h1 className="section-title gradient-text animate-fade-in">
@@ -198,9 +199,15 @@ export default function WorkPage() {
                   />
                 </div>
               </div>
+              
+              {/* Extra bottom spacing to ensure last card can scroll to top */}
+              <div className="h-32 sm:h-48 md:h-64 lg:h-80 xl:h-96"></div>
             </div>
           </div>
         </section>
+        
+        {/* Floating Chat */}
+        <FloatingChat />
       </main>
     </DynamicLayout>
   );

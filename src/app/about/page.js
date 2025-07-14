@@ -6,6 +6,7 @@ import SEO from '../../components/SEO';
 import BackgroundCanvas from '../../components/BackgroundCanvas';
 import { Button } from '../../components/ui/button';
 import experienceData from '../../lib/experience.json';
+import FloatingChat from '../../components/FloatingChat';
 
 export default function AboutPage() {
   const { lang } = useLanguage();
@@ -139,9 +140,14 @@ export default function AboutPage() {
       
       <main className="relative z-10 min-h-screen pt-20">
         {/* Hero Section */}
-        <section className="py-8 sm:py-12 md:py-16 px-4 bg-gradient-to-b from-white/80 to-white/60 backdrop-blur-sm">
+        <section className="py-8 sm:py-12 md:py-16 px-4 bg-gradient-to-b from-white/80 to-white/60 dark:from-gray-900/80 dark:to-gray-900/60 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-8 sm:mb-12">
+            <div className="flex flex-col items-center mb-8 sm:mb-12">
+              <img
+                src="/assets/islam-profile.jpg"
+                alt="Islam Elsayed"
+                className="w-40 h-40 rounded-full object-cover object-top border-4 border-blue-200 shadow-lg mb-6"
+              />
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 gradient-text">
                 {lang === 'ar' ? 'مرحباً، أنا اسلام' : 'Hey there, I\'m Islam'}
               </h1>
@@ -308,6 +314,9 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
+        
+        {/* Floating Chat */}
+        <FloatingChat />
       </main>
     </DynamicLayout>
   );

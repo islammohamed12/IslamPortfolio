@@ -41,7 +41,7 @@ export default function ApproachSection() {
   ];
 
   return (
-    <section className="py-8 sm:py-12 px-4 bg-gray-50/30">
+    <section className="py-8 sm:py-12 px-4 bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8 sm:mb-12">
           <h2 className="section-title gradient-text">
@@ -57,12 +57,12 @@ export default function ApproachSection() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {approaches.map((approach, index) => (
-            <div key={index} className="bg-white/95 backdrop-blur-md border border-gray-200/50 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 approach-card">
+            <div key={index} className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 approach-card">
               <div className="text-center">
                 <div className="text-4xl mb-4">{approach.icon}</div>
                 <div className="text-2xl font-bold text-blue-600 mb-3">{approach.number}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{approach.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{approach.description}</p>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">{approach.title}</h3>
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{approach.description}</p>
               </div>
             </div>
           ))}

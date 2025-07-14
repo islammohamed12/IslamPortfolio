@@ -9,6 +9,8 @@ import SEO from '../components/SEO';
 import ProjectCard from '../components/ProjectCard';
 import ExperienceStats from '../components/ExperienceStats';
 import ApproachSection from '../components/ApproachSection';
+import CalendlyButton from '../components/CalendlyButton';
+import CountriesSection from '../components/CountriesSection';
 
 export default function Home() {
   const { t, lang } = useLanguage();
@@ -203,19 +205,22 @@ export default function Home() {
       
       <main className="relative z-10 min-h-screen pt-20">
         {/* Hero Section */}
-        <section className="relative py-8 sm:py-12 md:py-16 px-4 bg-gradient-to-b from-white/80 to-white/60 backdrop-blur-sm">
+        <section className="relative py-8 sm:py-12 md:py-16 px-4 bg-gradient-to-b from-white/80 to-white/60 dark:from-gray-900/80 dark:to-gray-900/60 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-8 sm:mb-12 md:mb-16">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 gradient-text leading-tight hero-title">
                 {t.name}
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl text-gray-700 mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed px-4 font-medium hero-description">
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed px-4 font-medium hero-description">
                 {t.heroDesc}
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 px-4 hero-buttons">
                 <Button onClick={handleContact} className="btn-primary w-full sm:w-auto text-lg">
                   {t.contactMe}
                 </Button>
+                <CalendlyButton className="w-full sm:w-auto text-lg">
+                  {lang === 'ar' ? 'حجز موعد' : 'Book a Call'}
+                </CalendlyButton>
                 <Button onClick={handleViewProjects} variant="outline" className="btn-secondary w-full sm:w-auto text-lg">
                   {t.viewProjects}
                 </Button>
@@ -233,8 +238,11 @@ export default function Home() {
         {/* Approach Section */}
         <ApproachSection />
 
+        {/* Countries Section */}
+        <CountriesSection />
+
         {/* Featured Projects Section */}
-        <section className="py-8 sm:py-12 px-4 bg-white/60 backdrop-blur-sm">
+        <section className="py-8 sm:py-12 px-4 bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-8 sm:mb-12">
               <h2 className="section-title gradient-text">{t.projectsTitle}</h2>
@@ -266,7 +274,7 @@ export default function Home() {
         </section>
 
         {/* Testimonials Section */}
-        <section className="py-8 sm:py-12 px-4 testimonials-section bg-white/60 backdrop-blur-sm">
+        <section className="py-8 sm:py-12 px-4 testimonials-section bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-8 sm:mb-12">
               <h2 className="section-title gradient-text">{t.testimonialsTitle}</h2>
@@ -274,7 +282,7 @@ export default function Home() {
             </div>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {linkedInTestimonials.map((testimonial, index) => (
-                <div key={index} className="bg-white/80 backdrop-blur-sm rounded-lg p-6 shadow-lg border border-gray-200/50">
+                <div key={index} className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg p-6 shadow-lg border border-gray-200/50 dark:border-gray-700/50">
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
                       <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
@@ -284,11 +292,11 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="flex-1">
-                      <p className="text-gray-700 mb-4 italic">"{testimonial.quote}"</p>
+                      <p className="text-gray-700 dark:text-gray-300 mb-4 italic">"{testimonial.quote}"</p>
                       <div>
-                        <p className="font-semibold text-gray-900">{testimonial.name}</p>
-                        <p className="text-sm text-gray-600">{testimonial.position}</p>
-                        <p className="text-sm text-gray-500">{testimonial.company}</p>
+                        <p className="font-semibold text-gray-900 dark:text-gray-100">{testimonial.name}</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">{testimonial.position}</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-500">{testimonial.company}</p>
                       </div>
                     </div>
                   </div>
@@ -299,11 +307,11 @@ export default function Home() {
         </section>
 
         {/* Copyright Section */}
-        <footer className="py-8 px-4 bg-gray-50/80 backdrop-blur-sm">
+        <footer className="py-8 px-4 bg-gray-50/80 dark:bg-gray-800/80 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto text-center">
             <div className="flex flex-col sm:flex-row justify-between items-center">
               <div className="mb-4 sm:mb-0">
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-400">
                   © 2024 {lang === 'ar' ? 'اسلام السيد' : 'Islam Elsayed'}. {lang === 'ar' ? 'جميع الحقوق محفوظة' : 'All rights reserved'}.
                 </p>
               </div>
@@ -312,13 +320,13 @@ export default function Home() {
                   href="https://www.linkedin.com/in/islammohamed92/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-blue-600 transition-colors"
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
                   LinkedIn
                 </a>
                 <a 
                   href="mailto:islammohamed12@gmail.com"
-                  className="text-gray-600 hover:text-blue-600 transition-colors"
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
                   {lang === 'ar' ? 'تواصل' : 'Contact'}
                 </a>

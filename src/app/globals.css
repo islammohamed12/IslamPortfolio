@@ -243,7 +243,7 @@
   }
   
   .btn-secondary {
-    @apply bg-white/95 backdrop-blur-md text-gray-800 px-8 py-4 rounded-2xl font-semibold border-2 border-gray-200 transition-all duration-200 hover:bg-white hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 shadow-md hover:border-blue-300;
+    @apply bg-white/95 dark:bg-gray-800/95 backdrop-blur-md text-gray-800 dark:text-gray-200 px-8 py-4 rounded-2xl font-semibold border-2 border-gray-200 dark:border-gray-600 transition-all duration-200 hover:bg-white dark:hover:bg-gray-700 hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 shadow-md hover:border-blue-300 dark:hover:border-blue-400;
   }
   
   .skill-card-animation {
@@ -251,11 +251,11 @@
   }
   
   .section-title {
-    @apply text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 animate-fade-in-down;
+    @apply text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-gray-100 animate-fade-in-down;
   }
   
   .section-subtitle {
-    @apply text-lg sm:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in-up;
+    @apply text-lg sm:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in-up;
   }
   
   .professional-card {

@@ -122,10 +122,10 @@ export default function AutoScrollSkills({ skills, lang }) {
       </div>
       
       {/* Scroll indicators */}
-      <div className="absolute top-1/2 left-0 transform -translate-y-1/2 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
+              <div className="absolute top-1/2 left-0 transform -translate-y-1/2 w-8 h-8 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
         <span className="text-gray-600">‹</span>
       </div>
-      <div className="absolute top-1/2 right-0 transform -translate-y-1/2 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
+              <div className="absolute top-1/2 right-0 transform -translate-y-1/2 w-8 h-8 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
         <span className="text-gray-600">›</span>
       </div>
     </div>
