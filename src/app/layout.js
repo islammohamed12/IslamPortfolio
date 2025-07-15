@@ -3,6 +3,7 @@ import { LanguageProvider } from './LanguageProvider';
 import Navigation from '../components/Navigation';
 import DynamicLayout from './DynamicLayout';
 import GoogleAnalytics from '../components/GoogleAnalytics';
+import { Suspense } from 'react';
 
 export const metadata = {
   title: {
@@ -180,10 +181,14 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        <GoogleAnalytics />
+        <Suspense>
+          <GoogleAnalytics />
+        </Suspense>
         <LanguageProvider>
           <DynamicLayout>
-            <Navigation />
+            <Suspense>
+              <Navigation />
+            </Suspense>
             {children}
           </DynamicLayout>
         </LanguageProvider>
