@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '../app/LanguageProvider';
+import { trackAppStoreClick } from '../lib/analytics';
 
 export default function ProjectCard({ title, role, stack, result, description, image, appStoreLinks, date }) {
   const { lang } = useLanguage();
@@ -28,13 +29,19 @@ export default function ProjectCard({ title, role, stack, result, description, i
       {appStoreLinks && (
         <div className="flex gap-3">
           <Button 
-            onClick={() => window.open(appStoreLinks.appStore, '_blank')}
+            onClick={() => {
+              window.open(appStoreLinks.appStore, '_blank');
+              trackAppStoreClick(title, 'appstore');
+            }}
             className="flex-1 bg-black dark:bg-gray-800 text-white hover:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-300 hover:scale-105"
           >
             {lang === 'ar' ? 'متجر التطبيقات' : 'App Store'}
           </Button>
           <Button 
-            onClick={() => window.open(appStoreLinks.playStore, '_blank')}
+            onClick={() => {
+              window.open(appStoreLinks.playStore, '_blank');
+              trackAppStoreClick(title, 'playstore');
+            }}
             className="flex-1 bg-green-600 text-white hover:bg-green-700 transition-all duration-300 hover:scale-105"
           >
             {lang === 'ar' ? 'متجر جوجل' : 'Play Store'}

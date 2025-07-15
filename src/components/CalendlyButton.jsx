@@ -1,6 +1,7 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '../app/LanguageProvider';
+import { trackCalendlyBooking } from '../lib/analytics';
 
 export default function CalendlyButton({ 
   variant = 'default', 
@@ -13,6 +14,7 @@ export default function CalendlyButton({
 
   const handleCalendlyClick = () => {
     window.open('https://calendly.com/islammelsayed', '_blank');
+    trackCalendlyBooking();
   };
 
   const defaultText = lang === 'ar' ? 'حجز موعد' : 'Book a Call';

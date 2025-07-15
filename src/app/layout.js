@@ -2,6 +2,7 @@ import './globals.css';
 import { LanguageProvider } from './LanguageProvider';
 import Navigation from '../components/Navigation';
 import DynamicLayout from './DynamicLayout';
+import GoogleAnalytics from '../components/GoogleAnalytics';
 
 export const metadata = {
   title: {
@@ -179,6 +180,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
+        <GoogleAnalytics />
         <LanguageProvider>
           <DynamicLayout>
             <Navigation />
