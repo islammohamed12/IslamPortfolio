@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { useLanguage } from '../app/LanguageProvider';
+import { useLanguage } from '@/app/LanguageProvider';
 
 export default function ApproachSection() {
   const { lang } = useLanguage();

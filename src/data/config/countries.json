@@ -1,0 +1,34 @@
+{
+  "ar": [
+    {
+      "flag": "🇪🇬",
+      "name": "مصر",
+      "period": "2011 - 2021",
+      "role": "مطور تطبيقات الجوال",
+      "description": "بدأت مسيرتي المهنية في تطوير تطبيقات الجوال"
+    },
+    {
+      "flag": "🇦🇪",
+      "name": "الإمارات العربية المتحدة",
+      "period": "2021 - الحالي",
+      "role": "قائد فريق التطوير",
+      "description": "قائد فرق التطوير ومشاريع التحول الرقمي الحكومية"
+    }
+  ],
+  "en": [
+    {
+      "flag": "🇪🇬",
+      "name": "Egypt",
+      "period": "2011 - 2021",
+      "role": "Mobile App Developer",
+      "description": "Started my career in mobile app development"
+    },
+    {
+      "flag": "🇦🇪",
+      "name": "United Arab Emirates",
+      "period": "2021 - Present",
+      "role": "Development Team Lead",
+      "description": "Leading development teams and government digital transformation projects"
+    }
+  ]
+} 

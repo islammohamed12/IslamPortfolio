@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { useLanguage } from '../app/LanguageProvider';
-import { trackAppStoreClick } from '../lib/analytics';
+import { useLanguage } from '@/app/LanguageProvider';
+import { trackAppStoreClick } from '@/data/services/analytics';
 
 export default function ProjectCard({ title, role, stack, result, description, image, appStoreLinks, date }) {
   const { lang } = useLanguage();

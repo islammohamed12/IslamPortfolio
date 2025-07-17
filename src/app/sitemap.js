@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = 'https://islamelsayed.vercel.app';
+  const baseUrl = 'https://islammelsayed.com';
   
   return [
     {

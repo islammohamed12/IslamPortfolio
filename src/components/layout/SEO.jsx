@@ -1,14 +1,14 @@
 "use client";
 import { useEffect } from 'react';
-import { useLanguage } from '../app/LanguageProvider';
+import { useLanguage } from '@/app/LanguageProvider';
 
 export default function SEO({ 
   title, 
   description, 
   keywords = [], 
-  image = '/og-image.jpg',
+  image = '/og-image.svg',
   type = 'website',
-  url = 'https://islamelsayed.vercel.app'
+  url = 'https://islammelsayed.com'
 }) {
   const { lang } = useLanguage();
 

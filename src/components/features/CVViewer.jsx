@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { useLanguage } from '../app/LanguageProvider';
+import { useLanguage } from '@/app/LanguageProvider';
 
 export default function CVViewer() {
   const { lang } = useLanguage();

@@ -3,7 +3,7 @@
 import Script from 'next/script';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
-import { GA_TRACKING_ID, pageview } from '../lib/analytics';
+import { GA_TRACKING_ID, pageview } from '@/data/services/analytics';
 
 export default function GoogleAnalytics() {
   const pathname = usePathname();

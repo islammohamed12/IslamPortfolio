@@ -1,0 +1,66 @@
+{
+  "en": [
+    {
+      "title": "40% Efficiency Improvement",
+      "description": "Achieved 40% efficiency improvement through AI integration in FAHR applications",
+      "icon": "📈"
+    },
+    {
+      "title": "10+ Published Applications",
+      "description": "Developed and published over 10 mobile and web applications for government entities and banks",
+      "icon": "📱"
+    },
+    {
+      "title": "Multinational Team Leadership",
+      "description": "Leading multinational development teams in complex projects with Agile methodologies",
+      "icon": "🌍"
+    },
+    {
+      "title": "Advanced AI Integration",
+      "description": "Integration of OpenAI, FAISS, and AWS AI services in enterprise applications",
+      "icon": "🤖"
+    },
+    {
+      "title": "Comprehensive Government Solutions",
+      "description": "Developing comprehensive solutions for government entities with service and payment integrations",
+      "icon": "🏛️"
+    },
+    {
+      "title": "13+ Years Experience",
+      "description": "Comprehensive experience in mobile and web development with modern technologies",
+      "icon": "⏰"
+    }
+  ],
+  "ar": [
+    {
+      "title": "تحسين الكفاءة 40%",
+      "description": "تحقيق تحسين في كفاءة العمليات بنسبة 40% من خلال تكامل AI في تطبيقات FAHR",
+      "icon": "📈"
+    },
+    {
+      "title": "10+ تطبيقات منشورة",
+      "description": "تطوير ونشر أكثر من 10 تطبيقات جوال وويب للهيئات الحكومية والبنوك",
+      "icon": "📱"
+    },
+    {
+      "title": "قيادة فرق متعددة الجنسيات",
+      "description": "قيادة فرق تطوير متعددة الجنسيات في مشاريع معقدة مع منهجيات Agile",
+      "icon": "🌍"
+    },
+    {
+      "title": "تكامل AI متقدم",
+      "description": "تكامل OpenAI و FAISS و AWS AI services في تطبيقات المؤسسات",
+      "icon": "🤖"
+    },
+    {
+      "title": "حلول حكومية شاملة",
+      "description": "تطوير حلول شاملة للهيئات الحكومية مع تكامل الخدمات والمدفوعات",
+      "icon": "🏛️"
+    },
+    {
+      "title": "خبرة 13+ عام",
+      "description": "خبرة شاملة في تطوير تطبيقات الجوال والويب مع تقنيات حديثة",
+      "icon": "⏰"
+    }
+  ]
+} 

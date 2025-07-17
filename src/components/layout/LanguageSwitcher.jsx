@@ -1,6 +1,6 @@
 "use client";
-import { useLanguage } from './LanguageProvider';
-import { trackLanguageSwitch } from '../lib/analytics';
+import { useLanguage } from '@/app/LanguageProvider';
+import { trackLanguageSwitch } from '@/data/services/analytics';
 
 export default function LanguageSwitcher() {
   const { lang, setLang } = useLanguage();

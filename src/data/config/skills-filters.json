@@ -1,0 +1,96 @@
+{
+  "ar": [
+    { 
+      "id": "all", 
+      "label": "الكل", 
+      "count": 50 
+    },
+    { 
+      "id": "تطوير الجوال", 
+      "label": "تطوير الجوال", 
+      "count": 5 
+    },
+    { 
+      "id": "تطوير الواجهة الأمامية", 
+      "label": "تطوير الواجهات", 
+      "count": 8 
+    },
+    { 
+      "id": "الخلفية والسحابة", 
+      "label": "الخلفية والسحابة", 
+      "count": 9 
+    },
+    { 
+      "id": "الذكاء الاصطناعي", 
+      "label": "الذكاء الاصطناعي", 
+      "count": 7 
+    },
+    { 
+      "id": "السحابة وDevOps", 
+      "label": "السحابة والأمان", 
+      "count": 4 
+    },
+    { 
+      "id": "المؤسسات والتكامل", 
+      "label": "الأنظمة المؤسسية", 
+      "count": 7 
+    },
+    { 
+      "id": "أدوات التطوير", 
+      "label": "أدوات التطوير", 
+      "count": 6 
+    },
+    { 
+      "id": "المنهجيات", 
+      "label": "المنهجيات", 
+      "count": 3 
+    }
+  ],
+  "en": [
+    { 
+      "id": "all", 
+      "label": "All", 
+      "count": 50 
+    },
+    { 
+      "id": "Mobile Development", 
+      "label": "Mobile Development", 
+      "count": 5 
+    },
+    { 
+      "id": "Frontend Development", 
+      "label": "Frontend Development", 
+      "count": 8 
+    },
+    { 
+      "id": "Backend & Cloud", 
+      "label": "Backend & Cloud", 
+      "count": 9 
+    },
+    { 
+      "id": "AI & Machine Learning", 
+      "label": "AI & Machine Learning", 
+      "count": 7 
+    },
+    { 
+      "id": "Cloud & DevOps", 
+      "label": "Cloud & DevOps", 
+      "count": 4 
+    },
+    { 
+      "id": "Enterprise & Integration", 
+      "label": "Enterprise & Integration", 
+      "count": 7 
+    },
+    { 
+      "id": "Development Tools", 
+      "label": "Development Tools", 
+      "count": 6 
+    },
+    { 
+      "id": "Methodologies", 
+      "label": "Methodologies", 
+      "count": 3 
+    }
+  ]
+} 

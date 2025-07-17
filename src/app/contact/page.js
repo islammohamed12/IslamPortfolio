@@ -1,10 +1,10 @@
 'use client';
-import { useLanguage } from '../LanguageProvider';
-import DynamicLayout from '../DynamicLayout';
-import SEO from '../../components/SEO';
-import BackgroundCanvas from '../../components/BackgroundCanvas';
-import CalendlyButton from '../../components/CalendlyButton';
-import FloatingChat from '../../components/FloatingChat';
+import { useLanguage } from '@/app/LanguageProvider';
+import DynamicLayout from '@/components/layout/DynamicLayout';
+import SEO from '@/components/layout/SEO';
+import BackgroundCanvas from '@/components/layout/BackgroundCanvas';
+import CalendlyButton from '@/components/integrations/CalendlyButton';
+import FloatingChat from '@/components/features/FloatingChat';
 
 export default function ContactPage() {
   const { t, lang } = useLanguage();
@@ -41,8 +41,8 @@ export default function ContactPage() {
           'Development Projects',
           'Hire Developer'
         ]}
-        image="/og-image.jpg"
-        url="https://islamelsayed.vercel.app/contact"
+        image="/og-image.svg"
+        url="https://islammelsayed.com/contact"
       />
       
       <BackgroundCanvas />
@@ -50,7 +50,7 @@ export default function ContactPage() {
       <main className="relative z-10 min-h-screen pt-20">
         <section className="py-8 sm:py-12 md:py-16 px-4 bg-gradient-to-b from-white/80 to-white/60 dark:from-gray-900/80 dark:to-gray-900/60 backdrop-blur-sm">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 gradient-text">
+            <h1 className="page-title">
               {lang === 'ar' ? 'تواصل معي' : 'Get in Touch'}
             </h1>
             

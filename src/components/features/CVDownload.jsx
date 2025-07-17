@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useLanguage } from '../app/LanguageProvider';
-import { trackCVDownload } from '../lib/analytics';
+import { trackCVDownload } from '../data/analytics';
 
 export default function CVDownload() {
   const { lang } = useLanguage();

@@ -1,7 +1,7 @@
 'use client';
 import { Button } from '@/components/ui/button';
-import { useLanguage } from '../app/LanguageProvider';
-import { trackCalendlyBooking } from '../lib/analytics';
+import { useLanguage } from '@/app/LanguageProvider';
+import { trackCalendlyBooking } from '@/data/services/analytics';
 
 export default function CalendlyButton({ 
   variant = 'default', 

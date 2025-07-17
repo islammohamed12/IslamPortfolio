@@ -1,10 +1,10 @@
 'use client';
-import { useLanguage } from '../LanguageProvider';
-import DynamicLayout from '../DynamicLayout';
-import SEO from '../../components/SEO';
-import BackgroundCanvas from '../../components/BackgroundCanvas';
-import CVViewer from '../../components/CVViewer';
-import FloatingChat from '../../components/FloatingChat';
+import { useLanguage } from '@/app/LanguageProvider';
+import DynamicLayout from '@/components/layout/DynamicLayout';
+import SEO from '@/components/layout/SEO';
+import BackgroundCanvas from '@/components/layout/BackgroundCanvas';
+import CVViewer from '@/components/features/CVViewer';
+import FloatingChat from '@/components/features/FloatingChat';
 
 export default function CVPage() {
   const { t, lang } = useLanguage();
@@ -29,8 +29,8 @@ export default function CVPage() {
           'IBM MobileFirst Developer',
           'Islam Elsayed Experience'
         ]}
-        image="/og-image.jpg"
-        url="https://islamelsayed.vercel.app/cv"
+        image="/og-image.svg"
+        url="https://islammelsayed.com/cv"
       />
       
       <BackgroundCanvas />
@@ -39,7 +39,7 @@ export default function CVPage() {
         <section className="py-8 sm:py-12 md:py-16 px-4 bg-gradient-to-b from-white/80 to-white/60 dark:from-gray-900/80 dark:to-gray-900/60 backdrop-blur-sm">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-8 sm:mb-12">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 gradient-text">
+              <h1 className="page-title">
                 {lang === 'ar' ? 'السيرة الذاتية' : 'Curriculum Vitae'}
               </h1>
               <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">

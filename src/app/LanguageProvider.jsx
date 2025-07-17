@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import translations from '../lib/translations.json';
+import translations from '@/data/content/translations.json';
 
 const LanguageContext = createContext();
 

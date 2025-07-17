@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { useLanguage } from '../app/LanguageProvider';
+import { useLanguage } from '@/app/LanguageProvider';
 
 export default function CalendlyWidget({ 
   className = '',

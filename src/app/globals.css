@@ -172,6 +172,141 @@
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   }
 
+  /* Arabic text specific fixes */
+  [lang="ar"] h1, [lang="ar"] h2, [lang="ar"] h3, [lang="ar"] h4, [lang="ar"] h5, [lang="ar"] h6 {
+    line-height: 1.4;
+    word-spacing: 0.1em;
+    letter-spacing: 0.02em;
+  }
+
+  /* Hero title specific fixes for Arabic */
+  [lang="ar"] .hero-title {
+    line-height: 1.3 !important;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    overflow: visible;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  /* Page title specific fixes for Arabic */
+  [lang="ar"] .page-title {
+    line-height: 1.3 !important;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    overflow: visible;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  /* Section titles for Arabic */
+  [lang="ar"] .section-title {
+    line-height: 1.4 !important;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+  }
+
+  /* General Arabic text improvements */
+  [lang="ar"] p, [lang="ar"] span, [lang="ar"] div {
+    line-height: 1.6;
+    word-spacing: 0.05em;
+  }
+
+  /* Ensure proper text rendering for Arabic */
+  [lang="ar"] {
+    text-rendering: optimizeLegibility;
+    -webkit-font-feature-settings: "liga" 1, "kern" 1;
+    font-feature-settings: "liga" 1, "kern" 1;
+  }
+
+  /* Prevent text clipping */
+  [lang="ar"] * {
+    overflow-wrap: break-word;
+    word-break: keep-all;
+  }
+
+  /* Ensure proper overflow handling for Arabic text containers */
+  [lang="ar"] .text-center,
+  [lang="ar"] .text-left,
+  [lang="ar"] .text-right {
+    overflow: visible;
+    min-height: fit-content;
+    display: block;
+  }
+
+  /* Specific container fixes for Arabic text */
+  [lang="ar"] h1, [lang="ar"] h2, [lang="ar"] h3, [lang="ar"] h4, [lang="ar"] h5, [lang="ar"] h6 {
+    overflow: visible;
+    display: block;
+    width: 100%;
+  }
+
+  /* Specific fixes for gradient text in Arabic */
+  [lang="ar"] .gradient-text {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    position: relative;
+  }
+
+  /* Additional gradient text fixes for Arabic */
+  [lang="ar"] .gradient-text {
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  /* Responsive adjustments for Arabic text */
+  @media (max-width: 768px) {
+    [lang="ar"] .hero-title {
+      line-height: 1.2 !important;
+      font-size: 2.5rem !important;
+      padding: 0.3em 0;
+    }
+    
+    [lang="ar"] .page-title {
+      line-height: 1.2 !important;
+      font-size: 2.5rem !important;
+      padding: 0.3em 0;
+    }
+    
+    [lang="ar"] .section-title {
+      line-height: 1.3 !important;
+      font-size: 1.875rem !important;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    [lang="ar"] .hero-title {
+      line-height: 1.25 !important;
+      font-size: 3.5rem !important;
+      padding: 0.25em 0;
+    }
+    
+    [lang="ar"] .page-title {
+      line-height: 1.25 !important;
+      font-size: 3.5rem !important;
+      padding: 0.25em 0;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    [lang="ar"] .hero-title {
+      line-height: 1.3 !important;
+      font-size: 4.5rem !important;
+      padding: 0.2em 0;
+    }
+    
+    [lang="ar"] .page-title {
+      line-height: 1.3 !important;
+      font-size: 4.5rem !important;
+      padding: 0.2em 0;
+    }
+  }
+
   /* RTL Support */
   [dir="rtl"] {
     text-align: right;
@@ -256,6 +391,10 @@
   
   .section-subtitle {
     @apply text-lg sm:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in-up;
+  }
+  
+  .page-title {
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 gradient-text leading-tight animate-slide-in-up;
   }
   
   .professional-card {

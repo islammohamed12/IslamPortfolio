@@ -1,0 +1,240 @@
+{
+  "en": [
+    {
+      "title": "FAHR AI Assistant",
+      "role": "Development Team Lead",
+      "stack": "OpenAI, FAISS, React, Node.js, Python",
+      "result": "40% Efficiency Improvement",
+      "description": "Developed a secure and scalable RAG system using OpenAI and FAISS to support HR queries. Integrated RAG agents for multi-step interactions",
+      "image": "/project1.jpg",
+      "date": "2024",
+      "featured": true
+    },
+    {
+      "title": "FAHR HR UXUI",
+      "role": "UX/UI Engineer",
+      "stack": "React, Next.js, IBM MobileFirst",
+      "result": "Comprehensive Management Platform",
+      "description": "React web application built with Next.js and IBM MobileFirst platform for the Federal Authority for Government Human Resources",
+      "image": "/project2.jpg",
+      "date": "2023"
+    },
+    {
+      "title": "FAHR Mobile App",
+      "role": "Mobile App Developer",
+      "stack": "React Native, IBM MobileFirst",
+      "result": "Mobile HR Services",
+      "description": "React Native app (Android & iOS) built with IBM MobileFirst, delivering HR services on mobile",
+      "image": "/project3.jpg",
+      "date": "2023",
+      "appStoreLinks": {
+        "appStore": "https://apps.apple.com/us/app/fahr-smart-app/id918247230",
+        "playStore": "https://play.google.com/store/apps/details?id=com.Fahr"
+      },
+      "featured": true
+    },
+    {
+      "title": "Ajman One App",
+      "role": "Mobile App Developer",
+      "stack": "React Native, IBM MobileFirst",
+      "result": "Comprehensive E-Wallet Services",
+      "description": "Mobile app (iOS & Android) developed with React Native and IBM MobileFirst, offering e-wallet services and utility payments",
+      "image": "/project4.jpg",
+      "date": "2022",
+      "appStoreLinks": {
+        "appStore": "https://apps.apple.com/ae/app/ajman-one/id1234567891",
+        "playStore": "https://play.google.com/store/apps/details?id=ae.ajman.one"
+      },
+      "featured": true
+    },
+    {
+      "title": "RTA Mobile Suite",
+      "role": "Development Team Lead",
+      "stack": "IBM MobileFirst, React Native",
+      "result": "Unified Multi-App Platform",
+      "description": "Unified platform for multiple RTA apps (Drivers & Vehicles, Companies, Smart Parking, RTA Dubai)",
+      "image": "/project5.jpg",
+      "date": "2022",
+      "appStoreLinks": {
+        "appStore": "https://apps.apple.com/ae/app/rta-dubai/id426109507",
+        "playStore": "https://play.google.com/store/apps/details?id=com.rta.rtadubai"
+      }
+    },
+    {
+      "title": "Al Rajhi Bank App",
+      "role": "Mobile App Developer",
+      "stack": "React Native, IBM MobileFirst",
+      "result": "Cross-Platform Banking App",
+      "description": "Cross-platform e-banking app (Android, iOS) and native Windows Phone app for Al Rajhi Bank, Saudi Arabia",
+      "image": "/project6.jpg",
+      "date": "2021",
+      "appStoreLinks": {
+        "appStore": "https://apps.apple.com/sa/app/al-rajhi-bank/id1234567893",
+        "playStore": "https://play.google.com/store/apps/details?id=sa.com.alrajhi.bank"
+      }
+    },
+    {
+      "title": "Al Rajhi Takaful App",
+      "role": "Mobile App Developer",
+      "stack": "React Native, IBM MobileFirst",
+      "result": "Electronic Insurance Solution",
+      "description": "Cross-platform e-insurance solution (Android, iOS) for Al Rajhi Takaful, Saudi Arabia",
+      "image": "/project7.jpg",
+      "date": "2021",
+      "appStoreLinks": {
+        "appStore": "https://apps.apple.com/sa/app/al-rajhi-takaful/id1234567894",
+        "playStore": "https://play.google.com/store/apps/details?id=sa.com.alrajhi.takaful"
+      }
+    },
+    {
+      "title": "Al Bilad App",
+      "role": "Mobile App Developer",
+      "stack": "React Native, IBM MobileFirst",
+      "result": "Cross-Platform Insurance App",
+      "description": "Cross-platform insurance app (Android, iOS) for Al Bilad Bank, Saudi Arabia",
+      "image": "/project8.jpg",
+      "date": "2020",
+      "appStoreLinks": {
+        "appStore": "https://apps.apple.com/sa/app/al-bilad/id1234567895",
+        "playStore": "https://play.google.com/store/apps/details?id=sa.com.bilad"
+      }
+    },
+    {
+      "title": "RTA Chatbot Project",
+      "role": "AI Developer",
+      "stack": "AI, Chatbot, AWS",
+      "result": "Improved Service Accessibility",
+      "description": "Contributed to developing AI-powered chatbot for Dubai Roads and Transport Authority, improving service accessibility and automation",
+      "image": "/project9.jpg",
+      "date": "2023"
+    },
+    {
+      "title": "Himma Web App",
+      "role": "Web Developer",
+      "stack": "React, Node.js, MongoDB",
+      "result": "Comprehensive Web Application",
+      "description": "Developed a comprehensive web application with integrated solutions like AjmanPay integration and UAE Pass authentication",
+      "image": "/project10.jpg",
+      "date": "2022"
+    }
+  ],
+  "ar": [
+    {
+      "title": "FAHR AI Assistant",
+      "role": "قائد فريق التطوير",
+      "stack": "OpenAI, FAISS, React, Node.js, Python",
+      "result": "تحسين الكفاءة 40%",
+      "description": "تطوير نظام RAG آمن وقابل للتوسع باستخدام OpenAI و FAISS لدعم استعلامات الموارد البشرية. تكامل وكلاء RAG للتفاعلات متعددة الخطوات",
+      "image": "/project1.jpg",
+      "date": "2024",
+      "featured": true
+    },
+    {
+      "title": "FAHR HR UXUI",
+      "role": "مهندس UX/UI",
+      "stack": "React، Next.js، IBM MobileFirst",
+      "result": "منصة إدارة شاملة",
+      "description": "تطبيق ويب React مبني بـ Next.js و IBM MobileFirst للهيئة الاتحادية للموارد البشرية الحكومية",
+      "image": "/project2.jpg",
+      "date": "2023"
+    },
+    {
+      "title": "FAHR Mobile App",
+      "role": "مطور تطبيقات الجوال",
+      "stack": "React Native، IBM MobileFirst",
+      "result": "خدمات HR على الجوال",
+      "description": "تطبيق React Native (Android و iOS) مبني بـ IBM MobileFirst، يقدم خدمات الموارد البشرية على الجوال",
+      "image": "/project3.jpg",
+      "date": "2023",
+      "appStoreLinks": {
+        "appStore": "https://apps.apple.com/us/app/fahr-smart-app/id918247230",
+        "playStore": "https://play.google.com/store/apps/details?id=com.Fahr"
+      },
+      "featured": true
+    },
+    {
+      "title": "Ajman One App",
+      "role": "مطور تطبيقات الجوال",
+      "stack": "React Native، IBM MobileFirst",
+      "result": "خدمات e-wallet شاملة",
+      "description": "تطبيق جوال (iOS و Android) مطور بـ React Native و IBM MobileFirst، يقدم خدمات e-wallet ومدفوعات المرافق",
+      "image": "/project4.jpg",
+      "date": "2022",
+      "appStoreLinks": {
+        "appStore": "https://apps.apple.com/ae/app/ajman-one/id1234567891",
+        "playStore": "https://play.google.com/store/apps/details?id=ae.ajman.one"
+      },
+      "featured": true
+    },
+    {
+      "title": "RTA Mobile Suite",
+      "role": "قائد فريق التطوير",
+      "stack": "IBM MobileFirst، React Native",
+      "result": "منصة تطبيقات موحدة",
+      "description": "منصة موحدة لعدة تطبيقات RTA (السائقين والمركبات، الشركات، المواقف الذكية، RTA دبي)",
+      "image": "/project5.jpg",
+      "date": "2022",
+      "appStoreLinks": {
+        "appStore": "https://apps.apple.com/ae/app/rta-dubai/id426109507",
+        "playStore": "https://play.google.com/store/apps/details?id=com.rta.rtadubai"
+      }
+    },
+    {
+      "title": "Al Rajhi Bank App",
+      "role": "مطور تطبيقات الجوال",
+      "stack": "React Native، IBM MobileFirst",
+      "result": "تطبيق بنكي متعدد المنصات",
+      "description": "تطبيق بنكي متعدد المنصات (Android، iOS) وتطبيق Windows Phone أصلي لبنك الراجحي، السعودية",
+      "image": "/project6.jpg",
+      "date": "2021",
+      "appStoreLinks": {
+        "appStore": "https://apps.apple.com/sa/app/al-rajhi-bank/id1234567893",
+        "playStore": "https://play.google.com/store/apps/details?id=sa.com.alrajhi.bank"
+      }
+    },
+    {
+      "title": "Al Rajhi Takaful App",
+      "role": "مطور تطبيقات الجوال",
+      "stack": "React Native، IBM MobileFirst",
+      "result": "حل تأمين إلكتروني",
+      "description": "حل تأمين إلكتروني متعدد المنصات (Android، iOS) لشركة الراجحي تكافل، السعودية",
+      "image": "/project7.jpg",
+      "date": "2021",
+      "appStoreLinks": {
+        "appStore": "https://apps.apple.com/sa/app/al-rajhi-takaful/id1234567894",
+        "playStore": "https://play.google.com/store/apps/details?id=sa.com.alrajhi.takaful"
+      }
+    },
+    {
+      "title": "Al Bilad App",
+      "role": "مطور تطبيقات الجوال",
+      "stack": "React Native، IBM MobileFirst",
+      "result": "تطبيق تأمين متعدد المنصات",
+      "description": "تطبيق تأمين متعدد المنصات (Android، iOS) لبنك البلاد، السعودية",
+      "image": "/project8.jpg",
+      "date": "2020",
+      "appStoreLinks": {
+        "appStore": "https://apps.apple.com/sa/app/al-bilad/id1234567895",
+        "playStore": "https://play.google.com/store/apps/details?id=sa.com.bilad"
+      }
+    },
+    {
+      "title": "RTA Chatbot Project",
+      "role": "مطور ذكاء اصطناعي",
+      "stack": "ذكاء اصطناعي، شات بوت، AWS",
+      "result": "تحسين الوصول للخدمات",
+      "description": "المساهمة في تطوير شات بوت مدعوم بالذكاء الاصطناعي لهيئة الطرق والمواصلات بدبي، مما حسن الوصول للخدمات والأتمتة",
+      "image": "/project9.jpg",
+      "date": "2023"
+    },
+    {
+      "title": "Himma Web App",
+      "role": "مطور ويب",
+      "stack": "React، Node.js، MongoDB",
+      "result": "تطبيق ويب شامل",
+      "description": "تطوير تطبيق ويب شامل مع حلول متكاملة مثل تكامل AjmanPay والمصادقة عبر UAE Pass",
+      "image": "/project10.jpg",
+      "date": "2022"
+    }
+  ]
+} 

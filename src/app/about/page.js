@@ -1,12 +1,14 @@
 'use client';
 import React from 'react';
-import { useLanguage } from '../LanguageProvider';
-import DynamicLayout from '../DynamicLayout';
-import SEO from '../../components/SEO';
-import BackgroundCanvas from '../../components/BackgroundCanvas';
-import { Button } from '../../components/ui/button';
-import experienceData from '../../lib/experience.json';
-import FloatingChat from '../../components/FloatingChat';
+import { useLanguage } from '@/app/LanguageProvider';
+import DynamicLayout from '@/components/layout/DynamicLayout';
+import SEO from '@/components/layout/SEO';
+import BackgroundCanvas from '@/components/layout/BackgroundCanvas';
+import { Button } from '@/components/ui/button';
+import experienceData from '@/data/content/experience.json';
+import FloatingChat from '@/components/features/FloatingChat';
+import expertiseAreasData from '@/data/config/expertise-areas.json';
+import achievementsData from '@/data/config/achievements.json';
 
 export default function AboutPage() {
   const { lang } = useLanguage();
@@ -22,95 +24,8 @@ export default function AboutPage() {
   // Get experience data from centralized JSON
   const experience = experienceData[lang];
 
-  // Areas of Expertise
-  const expertiseAreas = [
-    {
-      title: lang === 'ar' ? 'تطوير تطبيقات الجوال' : 'Mobile App Development',
-      description: lang === 'ar'
-        ? 'تطوير تطبيقات جوال متقدمة باستخدام React Native و IBM MobileFirst و Flutter مع خبرة في iOS و Android'
-        : 'Advanced mobile application development using React Native, IBM MobileFirst, and Flutter with expertise in iOS and Android',
-      icon: '📱',
-      color: 'from-blue-500 to-blue-600'
-    },
-    {
-      title: lang === 'ar' ? 'تطوير الويب Full Stack' : 'Full Stack Web Development',
-      description: lang === 'ar'
-        ? 'تطوير تطبيقات ويب شاملة باستخدام React و Node.js و Python مع خبرة في قواعد البيانات والخدمات السحابية'
-        : 'Comprehensive web application development using React, Node.js, and Python with expertise in databases and cloud services',
-      icon: '🌐',
-      color: 'from-green-500 to-green-600'
-    },
-    {
-      title: lang === 'ar' ? 'قيادة فرق التطوير' : 'Development Team Leadership',
-      description: lang === 'ar'
-        ? 'قيادة فرق تطوير متعددة الجنسيات مع منهجيات Agile و DevOps لتسليم مشاريع معقدة'
-        : 'Leading multinational development teams with Agile and DevOps methodologies for complex project delivery',
-      icon: '👥',
-      color: 'from-orange-500 to-orange-600'
-    },
-    {
-      title: lang === 'ar' ? 'تطبيقات المؤسسات' : 'Enterprise Applications',
-      description: lang === 'ar'
-        ? 'تطوير حلول مؤسسية شاملة للهيئات الحكومية والبنوك مع تكامل أنظمة متعددة'
-        : 'Developing comprehensive enterprise solutions for government entities and banks with multi-system integration',
-      icon: '🏢',
-      color: 'from-indigo-500 to-indigo-600'
-    },
-    {
-      title: lang === 'ar' ? 'DevOps و السحابة' : 'DevOps & Cloud',
-      description: lang === 'ar'
-        ? 'إدارة البنية التحتية السحابية و CI/CD pipelines مع AWS و Azure'
-        : 'Managing cloud infrastructure and CI/CD pipelines with AWS and Azure',
-      icon: '☁️',
-      color: 'from-cyan-500 to-cyan-600'
-    }
-  ];
-
-  // Key Achievements
-  const achievements = [
-    {
-      title: lang === 'ar' ? 'تحسين الكفاءة 40%' : '40% Efficiency Improvement',
-      description: lang === 'ar'
-        ? 'تحقيق تحسين في كفاءة العمليات بنسبة 40% من خلال تكامل AI في تطبيقات FAHR'
-        : 'Achieved 40% efficiency improvement through AI integration in FAHR applications',
-      icon: '📈'
-    },
-    {
-      title: lang === 'ar' ? '10+ تطبيقات منشورة' : '10+ Published Applications',
-      description: lang === 'ar'
-        ? 'تطوير ونشر أكثر من 10 تطبيقات جوال وويب للهيئات الحكومية والبنوك'
-        : 'Developed and published over 10 mobile and web applications for government entities and banks',
-      icon: '📱'
-    },
-    {
-      title: lang === 'ar' ? 'قيادة فرق متعددة الجنسيات' : 'Multinational Team Leadership',
-      description: lang === 'ar'
-        ? 'قيادة فرق تطوير متعددة الجنسيات في مشاريع معقدة مع منهجيات Agile'
-        : 'Leading multinational development teams in complex projects with Agile methodologies',
-      icon: '🌍'
-    },
-    {
-      title: lang === 'ar' ? 'تكامل AI متقدم' : 'Advanced AI Integration',
-      description: lang === 'ar'
-        ? 'تكامل OpenAI و FAISS و AWS AI services في تطبيقات المؤسسات'
-        : 'Integration of OpenAI, FAISS, and AWS AI services in enterprise applications',
-      icon: '🤖'
-    },
-    {
-      title: lang === 'ar' ? 'حلول حكومية شاملة' : 'Comprehensive Government Solutions',
-      description: lang === 'ar'
-        ? 'تطوير حلول شاملة للهيئات الحكومية مع تكامل الخدمات والمدفوعات'
-        : 'Developing comprehensive solutions for government entities with service and payment integrations',
-      icon: '🏛️'
-    },
-    {
-      title: lang === 'ar' ? 'خبرة 13+ عام' : '13+ Years Experience',
-      description: lang === 'ar'
-        ? 'خبرة شاملة في تطوير تطبيقات الجوال والويب مع تقنيات حديثة'
-        : 'Comprehensive experience in mobile and web development with modern technologies',
-      icon: '⏰'
-    }
-  ];
+  const expertiseAreas = expertiseAreasData[lang];
+  const achievements = achievementsData[lang];
 
   return (
     <DynamicLayout>
@@ -132,8 +47,8 @@ export default function AboutPage() {
           'Development Team Lead',
           'Enterprise Applications'
         ]}
-        image="/og-image.jpg"
-        url="https://islamelsayed.vercel.app/about"
+        image="/og-image.svg"
+        url="https://islammelsayed.com/about"
       />
       
       <BackgroundCanvas />
@@ -148,7 +63,7 @@ export default function AboutPage() {
                 alt="Islam Elsayed"
                 className="w-40 h-40 rounded-full object-cover object-top border-4 border-blue-200 shadow-lg mb-6"
               />
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 gradient-text">
+              <h1 className="page-title">
                 {lang === 'ar' ? 'مرحباً، أنا اسلام' : 'Hey there, I\'m Islam'}
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl text-gray-700 mb-8 max-w-4xl mx-auto leading-relaxed">

@@ -1,8 +1,9 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { useLanguage } from '../app/LanguageProvider';
+import { useLanguage } from '@/app/LanguageProvider';
 import { MoonIcon, SunIcon } from '@heroicons/react/24/outline';
+import Logo from './Logo';
 
 function useDarkMode() {
   const [isDark, setIsDark] = useState(() => {
@@ -95,8 +96,15 @@ const Navigation = () => {
       } ${isHidden ? '-translate-y-full' : 'translate-y-0'}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
+            {/* Logo */}
+            <div className="flex-shrink-0">
+              <a href="/" className="block">
+                <Logo variant="full" size="default" />
+              </a>
+            </div>
+            
             {/* Desktop Navigation Links */}
-            <div className={`hidden md:flex gap-8 sm:gap-12`}>
+            <div className={`hidden md:flex gap-8 sm:gap-12 flex-1 justify-center`}>
               {tabs.map((tab) => (
                 <a
                   key={tab.id}
@@ -142,6 +150,13 @@ const Navigation = () => {
             
             {/* Mobile Navigation */}
             <div className="md:hidden flex items-center justify-between w-full">
+              {/* Mobile Logo */}
+              <div className="flex-shrink-0">
+                <a href="/" className="block">
+                  <Logo variant="icon" size="small" />
+                </a>
+              </div>
+              
               {/* Language & Dark Mode - Position based on language */}
               <div className={`flex items-center ${lang === 'ar' ? 'space-x-4 order-2' : 'space-x-3 order-1'}`}>
                 <button
@@ -213,9 +228,12 @@ const Navigation = () => {
       }`}>
         <div className="px-6 py-4">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-              {lang === 'ar' ? 'القائمة' : 'Menu'}
-            </h2>
+            <div className="flex items-center space-x-3">
+              <Logo variant="icon" size="small" />
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                {lang === 'ar' ? 'القائمة' : 'Menu'}
+              </h2>
+            </div>
                           <button
                 onClick={closeMobileMenu}
                 className="p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"

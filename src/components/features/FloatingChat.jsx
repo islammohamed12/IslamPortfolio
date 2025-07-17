@@ -1,8 +1,8 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useLanguage } from '../app/LanguageProvider';
+import { useLanguage } from '@/app/LanguageProvider';
 
 export default function FloatingChat() {
   const { t, lang } = useLanguage();
@@ -10,6 +10,7 @@ export default function FloatingChat() {
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false); // Always closed by default
+  const messagesEndRef = useRef(null);
 
   const quickActions = [
     {
@@ -57,6 +58,12 @@ export default function FloatingChat() {
     ]);
   }, [lang, t.chatGreeting]);
 
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages, isOpen]);
+
   const sendMessage = async (customMessage = null) => {
     const messageToSend = customMessage || input.trim();
     if (!messageToSend) return;
@@ -70,7 +77,7 @@ export default function FloatingChat() {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: [...messages, userMsg] })
+        body: JSON.stringify({ message: messageToSend })
       });
       
       if (!res.ok) {
@@ -80,6 +87,7 @@ export default function FloatingChat() {
       const data = await res.json();
       setMessages((prev) => [...prev, data]);
     } catch (error) {
+      console.error('Chat error:', error);
       setMessages((prev) => [...prev, { 
         role: 'assistant', 
         content: lang === 'ar' ? 'عذراً، حدث خطأ في الاتصال. حاول مرة أخرى.' : 'Sorry, there was a connection error. Please try again.'
@@ -201,6 +209,7 @@ export default function FloatingChat() {
                 </div>
               </div>
             )}
+            <div ref={messagesEndRef} />
           </div>
           
           {/* Input */}

@@ -1,8 +1,8 @@
 import './globals.css';
 import { LanguageProvider } from './LanguageProvider';
-import Navigation from '../components/Navigation';
-import DynamicLayout from './DynamicLayout';
-import GoogleAnalytics from '../components/GoogleAnalytics';
+import Navigation from '@/components/layout/Navigation';
+import DynamicLayout from '@/components/layout/DynamicLayout';
+import GoogleAnalytics from '@/components/integrations/GoogleAnalytics';
 import { Suspense } from 'react';
 
 export const metadata = {
@@ -36,7 +36,7 @@ export const metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://www.islammelsayed.com'),
+  metadataBase: new URL('https://islammelsayed.com'),
   alternates: {
     canonical: '/',
     languages: {
@@ -48,13 +48,13 @@ export const metadata = {
     type: 'website',
     locale: 'en_US',
     alternateLocale: 'ar_SA',
-    url: 'https://www.islammelsayed.com',
+    url: 'https://islammelsayed.com',
     title: 'Islam Elsayed - Mobile App Developer & Team Lead',
     description: 'Experienced Mobile App Developer and Development Team Lead specializing in React Native, IBM MobileFirst, and cross-platform development.',
     siteName: 'Islam Elsayed Portfolio',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.svg',
         width: 1200,
         height: 630,
         alt: 'Islam Elsayed - Mobile App Developer',
@@ -65,7 +65,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Islam Elsayed - Mobile App Developer & Team Lead',
     description: 'Experienced Mobile App Developer and Development Team Lead specializing in React Native, IBM MobileFirst, and cross-platform development.',
-    images: ['/og-image.jpg'],
+    images: ['/og-image.svg'],
     creator: '@islamelsayed',
   },
   robots: {
@@ -80,9 +80,7 @@ export const metadata = {
     },
   },
   verification: {
-    google: 'your-google-verification-code',
-    yandex: 'your-yandex-verification-code',
-    yahoo: 'your-yahoo-verification-code',
+    // Add your verification codes here when needed
   },
 };
 
@@ -129,10 +127,9 @@ export default function RootLayout({ children }) {
         <meta name="apple-mobile-web-app-title" content="Islam Elsayed" />
         
         {/* Favicon and App Icons */}
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        {/* PNG favicons will be generated from SVG when needed */}
         <link rel="manifest" href="/site.webmanifest" />
         
         {/* Additional SEO */}
@@ -151,7 +148,7 @@ export default function RootLayout({ children }) {
               "name": "Islam Elsayed",
               "jobTitle": "Mobile App Developer & Team Lead",
               "description": "Experienced Mobile App Developer and Development Team Lead specializing in React Native, IBM MobileFirst, and cross-platform development.",
-              "url": "https://www.islammelsayed.com",
+              "url": "https://islammelsayed.com",
               "sameAs": [
                 "https://linkedin.com/in/islamelsayed",
                 "https://github.com/islamelsayed"

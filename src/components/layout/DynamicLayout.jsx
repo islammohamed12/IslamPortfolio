@@ -1,7 +1,7 @@
 "use client";
-import { useLanguage } from './LanguageProvider';
+import { useLanguage } from '@/app/LanguageProvider';
 import { useEffect } from 'react';
-import { loadFonts } from '../lib/fonts';
+import { loadFonts } from '@/data/services/fonts';
 
 export default function DynamicLayout({ children }) {
   const { lang, isLoaded } = useLanguage();

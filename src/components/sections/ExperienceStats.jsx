@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
-import { useLanguage } from '../app/LanguageProvider';
-import experienceData from '../lib/experience.json';
+import { useLanguage } from '@/app/LanguageProvider';
+import experienceData from '@/data/content/experience.json';
 
 export default function ExperienceStats() {
   const { lang } = useLanguage();
