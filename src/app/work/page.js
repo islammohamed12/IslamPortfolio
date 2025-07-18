@@ -53,9 +53,10 @@ export default function WorkPage() {
               </p>
             </div>
             
-            {/* Sticky Cards Container */}
+            {/* Projects Grid */}
             <div className="relative">
-              <div className="sticky-cards-container">
+              {/* Mobile and Tablet: Sticky Cards */}
+              <div className="sticky-cards-container lg:hidden">
                 {workProjects.map((project, idx) => (
                   <div className="sticky-card" key={idx}>
                     <ProjectCard {...project} />
@@ -63,8 +64,17 @@ export default function WorkPage() {
                 ))}
               </div>
               
-              {/* Extra bottom spacing to ensure last card can scroll to top */}
-              <div className="h-32 sm:h-48 md:h-64 lg:h-80 xl:h-96"></div>
+              {/* Desktop: Regular Grid */}
+              <div className="hidden lg:grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
+                {workProjects.map((project, idx) => (
+                  <div key={idx} className="transform hover:scale-105 transition-transform duration-300">
+                    <ProjectCard {...project} />
+                  </div>
+                ))}
+              </div>
+              
+              {/* Extra bottom spacing for mobile/tablet sticky cards */}
+              <div className="h-32 sm:h-48 md:h-64 lg:hidden"></div>
             </div>
           </div>
         </section>
